@@ -3,39 +3,584 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>World TV 📺</title>
 
 <style>
-body {
-    margin: 0;
-    background: #101318;
-    color: white;
-    font-family: Arial, Tahoma, sans-serif;
-    text-align: center;
+*{
+    box-sizing:border-box;
 }
 
-.container {
-    padding: 60px 20px;
+body{
+    margin:0;
+    background:#0f1218;
+    color:#fff;
+    font-family:Arial,Tahoma,sans-serif;
 }
 
-h1 {
-    font-size: 32px;
+header{
+    background:#171c25;
+    padding:25px 15px;
+    text-align:center;
+    position:sticky;
+    top:0;
+    z-index:10;
+    box-shadow:0 2px 15px #0008;
 }
 
-p {
-    color: #aaa;
-    font-size: 18px;
+.logo-title{
+    font-size:30px;
+    font-weight:bold;
+}
+
+.subtitle{
+    color:#9ca3af;
+    margin-top:8px;
+}
+
+.controls{
+    max-width:900px;
+    margin:20px auto 0;
+    display:flex;
+    gap:10px;
+}
+
+input,select{
+    flex:1;
+    padding:13px;
+    border-radius:10px;
+    border:1px solid #343b48;
+    background:#242a35;
+    color:#fff;
+    font-size:15px;
+    outline:none;
+}
+
+main{
+    max-width:1200px;
+    margin:auto;
+    padding:20px 15px 50px;
+}
+
+.status{
+    text-align:center;
+    padding:20px;
+    color:#aeb5c0;
+}
+
+.country-title{
+    margin:30px 0 15px;
+    padding:12px 15px;
+    background:#191f29;
+    border-right:4px solid #3984ff;
+    border-radius:8px;
+    font-size:21px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+    gap:14px;
+}
+
+.card{
+    background:#191e27;
+    border:1px solid #2c333e;
+    border-radius:14px;
+    padding:14px;
+    transition:.2s;
+}
+
+.card:hover{
+    transform:translateY(-2px);
+}
+
+.channel-logo{
+    width:70px;
+    height:70px;
+    object-fit:contain;
+    display:block;
+    margin:0 auto 12px;
+    background:#fff;
+    border-radius:10px;
+}
+
+.no-logo{
+    width:70px;
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 12px;
+    background:#292f3a;
+    border-radius:10px;
+    font-size:28px;
+}
+
+.channel-name{
+    text-align:center;
+    font-weight:bold;
+    min-height:38px;
+}
+
+.channel-info{
+    text-align:center;
+    color:#8f98a6;
+    font-size:12px;
+    margin-top:6px;
+}
+
+.watch{
+    display:block;
+    width:100%;
+    margin-top:12px;
+    padding:11px;
+    border:0;
+    border-radius:9px;
+    background:#287cf0;
+    color:white;
+    font-weight:bold;
+    text-decoration:none;
+    text-align:center;
+    cursor:pointer;
+}
+
+.watch:hover{
+    background:#1768d8;
+}
+
+footer{
+    text-align:center;
+    color:#727b88;
+    padding:25px;
+    font-size:13px;
+}
+
+@media(max-width:600px){
+    .controls{
+        flex-direction:column;
+    }
+
+    .grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+    }
+
+    .card{
+        padding:10px;
+    }
+
+    .logo-title{
+        font-size:25px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-    <h1>🌍 World TV 📺</h1>
-    <p>الموقع يعمل بنجاح ✅</p>
-    <p>جاري تجهيز القنوات العالمية...</p>
+<header>
+
+<div class="logo-title">
+🌍 World TV 📺
 </div>
 
+<div class="subtitle">
+القنوات العالمية حسب الدول
+</div>
+
+<div class="controls">
+
+<input
+id="search"
+type="search"
+placeholder="🔎 ابحث عن قناة..."
+>
+
+<select id="country">
+<option value="">🌍 جميع الدول</option>
+</select>
+
+</div>
+
+</header>
+
+<main>
+
+<div id="status" class="status">
+⏳ جاري تحميل القنوات...
+</div>
+
+<div id="channels"></div>
+
+</main>
+
+<footer>
+World TV 📺
+</footer>
+
+<script>
+
+const CHANNELS_URL =
+"https://iptv-org.github.io/api/channels.json";
+
+const STREAMS_URL =
+"https://iptv-org.github.io/api/streams.json";
+
+let channels=[];
+let streams=[];
+let streamMap=new Map();
+
+
+async function start(){
+
+try{
+
+const results=await Promise.all([
+
+fetch(CHANNELS_URL),
+fetch(STREAMS_URL)
+
+]);
+
+if(!results[0].ok || !results[1].ok){
+throw new Error("Network error");
+}
+
+channels=await results[0].json();
+streams=await results[1].json();
+
+
+streams.forEach(stream=>{
+
+if(stream.channel && stream.url){
+
+if(!streamMap.has(stream.channel)){
+streamMap.set(
+stream.channel,
+stream.url
+);
+}
+
+}
+
+});
+
+
+createCountryList();
+
+displayChannels();
+
+}catch(error){
+
+console.error(error);
+
+document.getElementById("status").innerHTML=
+"❌ تعذر تحميل القنوات.<br>تحقق من اتصال الإنترنت ثم أعد تحميل الصفحة.";
+
+}
+
+}
+
+
+function createCountryList(){
+
+const select=
+document.getElementById("country");
+
+const countries=new Set();
+
+channels.forEach(channel=>{
+
+if(Array.isArray(channel.countries)){
+
+channel.countries.forEach(country=>{
+countries.add(country);
+});
+
+}
+
+});
+
+
+const sorted=
+Array.from(countries).sort(
+(a,b)=>a.localeCompare(b)
+);
+
+
+sorted.forEach(country=>{
+
+const option=
+document.createElement("option");
+
+option.value=country;
+option.textContent=country;
+
+select.appendChild(option);
+
+});
+
+}
+
+
+function displayChannels(){
+
+const search=
+document.getElementById("search")
+.value
+.trim()
+.toLowerCase();
+
+const selectedCountry=
+document.getElementById("country")
+.value;
+
+
+const groups={};
+
+channels.forEach(channel=>{
+
+const streamUrl=
+streamMap.get(channel.id);
+
+if(!streamUrl){
+return;
+}
+
+
+const name=
+(channel.name || "").toLowerCase();
+
+
+const matchesSearch=
+!search ||
+name.includes(search);
+
+
+const countries=
+Array.isArray(channel.countries)
+?channel.countries
+:[];
+
+
+const matchesCountry=
+!selectedCountry ||
+countries.includes(selectedCountry);
+
+
+if(!matchesSearch || !matchesCountry){
+return;
+}
+
+
+const country=
+countries.length
+?countries[0]
+:"International";
+
+
+if(!groups[country]){
+groups[country]=[];
+}
+
+
+groups[country].push({
+channel:channel,
+url:streamUrl
+});
+
+});
+
+
+renderGroups(groups);
+
+}
+
+
+function renderGroups(groups){
+
+const container=
+document.getElementById("channels");
+
+container.innerHTML="";
+
+
+const countryNames=
+Object.keys(groups).sort(
+(a,b)=>a.localeCompare(b)
+);
+
+
+let total=0;
+
+
+countryNames.forEach(country=>{
+
+const items=groups[country];
+
+if(!items.length){
+return;
+}
+
+
+items.sort((a,b)=>
+(a.channel.name || "")
+.localeCompare(
+b.channel.name || ""
+)
+);
+
+
+total+=items.length;
+
+
+const title=
+document.createElement("div");
+
+title.className="country-title";
+
+title.textContent=
+"🌐 " + country +
+" — " + items.length +
+" قناة";
+
+container.appendChild(title);
+
+
+const grid=
+document.createElement("div");
+
+grid.className="grid";
+
+
+items.forEach(item=>{
+
+const card=
+document.createElement("div");
+
+card.className="card";
+
+
+const channel=
+item.channel;
+
+
+if(channel.logo){
+
+const img=
+document.createElement("img");
+
+img.className="channel-logo";
+
+img.src=channel.logo;
+
+img.alt=channel.name || "Channel";
+
+img.loading="lazy";
+
+img.onerror=function(){
+this.style.display="none";
+};
+
+card.appendChild(img);
+
+}else{
+
+const noLogo=
+document.createElement("div");
+
+noLogo.className="no-logo";
+
+noLogo.textContent="📺";
+
+card.appendChild(noLogo);
+
+}
+
+
+const name=
+document.createElement("div");
+
+name.className="channel-name";
+
+name.textContent=
+channel.name || "Unknown";
+
+card.appendChild(name);
+
+
+const info=
+document.createElement("div");
+
+info.className="channel-info";
+
+const languages=
+Array.isArray(channel.languages)
+?channel.languages.join(", ")
+:"";
+
+info.textContent=
+languages || "TV Channel";
+
+card.appendChild(info);
+
+
+const button=
+document.createElement("a");
+
+button.className="watch";
+
+button.href=item.url;
+
+button.target="_blank";
+
+button.rel="noopener noreferrer";
+
+button.textContent=
+"▶ مشاهدة";
+
+card.appendChild(button);
+
+
+grid.appendChild(card);
+
+});
+
+
+container.appendChild(grid);
+
+});
+
+
+document.getElementById("status").textContent=
+total
+?("📺 القنوات المتاحة: " + total)
+:"لا توجد قنوات مطابقة للبحث.";
+
+
+}
+
+
+document
+.getElementById("search")
+.addEventListener(
+"input",
+displayChannels
+);
+
+
+document
+.getElementById("country")
+.addEventListener(
+"change",
+displayChannels
+);
+
+
+start();
+
+</script>
+
 </body>
-  </html>
+    </html>
