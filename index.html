@@ -2,151 +2,172 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Hamouda TV Pro</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HAMOUDA TV PRO</title>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <style>
 *{box-sizing:border-box}
-html,body{margin:0;background:#080a0f;color:#fff;font-family:Arial,Tahoma,sans-serif}
-body{min-height:100vh}
-
+body{
+ margin:0;background:#07090d;color:#fff;
+ font-family:Arial,Tahoma,sans-serif
+}
 header{
-position:sticky;top:0;z-index:100;
-background:rgba(8,10,15,.96);
-backdrop-filter:blur(14px);
-border-bottom:1px solid #252a34
+ position:sticky;top:0;z-index:20;
+ background:#0d1016ee;
+ backdrop-filter:blur(12px);
+ border-bottom:1px solid #242933
 }
-
 .nav{
-max-width:1450px;margin:auto;min-height:64px;
-display:flex;align-items:center;gap:16px;padding:10px 18px
+ max-width:1400px;margin:auto;
+ min-height:65px;padding:10px 15px;
+ display:flex;align-items:center;gap:15px
 }
-
-.logo{font-size:23px;font-weight:900;white-space:nowrap}
+.logo{font-size:21px;font-weight:bold;white-space:nowrap}
 .logo b{color:#e50914}
-
-.search{margin-right:auto;width:min(330px,42vw)}
+.search{margin-right:auto;width:330px}
 .search input{
-width:100%;padding:11px 15px;border-radius:25px;
-border:1px solid #303642;background:#171a21;color:white;outline:0
-}
-
-.hero{
-max-width:1450px;margin:auto;
-background:#000
+ width:100%;padding:11px 16px;
+ border-radius:25px;border:1px solid #303641;
+ background:#171a20;color:#fff;outline:none
 }
 
 .player{
-width:100%;aspect-ratio:16/9;max-height:70vh;
-background:#000;position:relative
+ position:relative;background:#000;
+ width:100%;max-width:1400px;margin:auto;
+ aspect-ratio:16/9
 }
-
-video{width:100%;height:100%;object-fit:contain;background:#000}
-
-.playerTitle{
-position:absolute;bottom:0;right:0;left:0;
-padding:55px 22px 18px;
-background:linear-gradient(transparent,#000d);
-pointer-events:none
+video{
+ width:100%;height:100%;
+ background:#000;object-fit:contain
 }
-
+.playerTop{
+ position:absolute;top:0;right:0;left:0;
+ padding:15px;
+ background:linear-gradient(#000b,transparent);
+ pointer-events:none
+}
 .live{
-display:inline-block;background:#e50914;
-padding:5px 9px;border-radius:5px;font-size:11px;font-weight:bold
+ background:#e50914;
+ padding:5px 9px;border-radius:5px;
+ font-size:12px
+}
+.channelName{
+ margin-top:8px;font-weight:bold;font-size:18px
+}
+.loader,.error{
+ position:absolute;inset:0;
+ display:none;align-items:center;
+ justify-content:center;
+ flex-direction:column;
+ gap:13px;background:#000c;
+ z-index:5
+}
+.spinner{
+ width:40px;height:40px;
+ border:4px solid #444;
+ border-top-color:#e50914;
+ border-radius:50%;
+ animation:spin .8s linear infinite
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.error button{
+ background:#e50914;color:#fff;
+ border:0;border-radius:8px;
+ padding:11px 20px;font-size:15px
 }
 
-.now{font-size:22px;font-weight:bold;margin-top:8px}
-
-.main{max-width:1450px;margin:auto;padding:20px 16px 60px}
-
-.heading{
-display:flex;justify-content:space-between;align-items:center;
-margin:22px 0 12px
+main{
+ max-width:1400px;margin:auto;
+ padding:18px 15px 50px
 }
-
-.heading h2{font-size:20px;margin:0}
-.count{color:#777;font-size:12px}
-
-.categories,.countries{
-display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;
-scrollbar-width:none
+.title{
+ font-size:20px;font-weight:bold;
+ margin:22px 0 12px
 }
-
-.categories::-webkit-scrollbar,
-.countries::-webkit-scrollbar{display:none}
-
-.filter{
-flex:0 0 auto;border:1px solid #303642;
-background:#171a21;color:#ddd;
-padding:10px 15px;border-radius:22px;cursor:pointer
+.row{
+ display:flex;gap:8px;
+ overflow-x:auto;padding-bottom:7px;
+ scrollbar-width:none
 }
-
-.filter.active{background:#e50914;border-color:#e50914}
+.row::-webkit-scrollbar{display:none}
+.btn{
+ flex:0 0 auto;
+ background:#171a20;color:#ddd;
+ border:1px solid #303641;
+ padding:10px 15px;
+ border-radius:22px;cursor:pointer
+}
+.btn.active{
+ background:#e50914;
+ border-color:#e50914;color:white
+}
 
 .grid{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-gap:13px
+ display:grid;
+ grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+ gap:13px
 }
-
 .card{
-background:#14171e;border:1px solid #252a34;
-border-radius:10px;overflow:hidden;cursor:pointer;
-transition:.18s
+ background:#14171d;
+ border:1px solid #252a34;
+ border-radius:11px;
+ overflow:hidden
 }
-
-.card:hover{transform:translateY(-2px);border-color:#555}
-
 .logoBox{
-height:105px;background:#0c0e13;
-display:flex;align-items:center;justify-content:center;padding:14px
+ height:105px;background:#0c0f14;
+ display:flex;align-items:center;
+ justify-content:center;position:relative
 }
-
-.logoBox img{width:100%;height:100%;object-fit:contain}
-.noLogo{font-size:38px}
-
-.body{padding:10px}
-
+.logoBox img{
+ width:100%;height:100%;
+ object-fit:contain;padding:12px
+}
+.flag{
+ position:absolute;right:7px;top:7px;
+ font-size:22px;z-index:2
+}
+.fallback{font-size:40px}
+.info{padding:10px}
 .name{
-font-weight:bold;font-size:14px;
-white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+ font-weight:bold;font-size:14px;
+ white-space:nowrap;overflow:hidden;
+ text-overflow:ellipsis
 }
-
-.meta{font-size:11px;color:#777;margin-top:5px}
-
+.country{
+ color:#89919e;font-size:12px;margin-top:6px
+}
 .watch{
-width:100%;border:0;border-radius:7px;
-padding:9px;margin-top:9px;
-background:#252a33;color:#fff;cursor:pointer
+ width:100%;margin-top:9px;
+ border:0;border-radius:7px;
+ padding:9px;background:#292e38;
+ color:#fff;cursor:pointer
 }
-
 .watch:hover{background:#e50914}
-
 .more{
-display:block;margin:25px auto 0;
-padding:12px 30px;border:1px solid #343a46;
-border-radius:24px;background:#181b22;color:white;
-cursor:pointer;font-weight:bold
+ display:block;margin:25px auto;
+ background:#181c23;color:#fff;
+ border:1px solid #343b46;
+ padding:12px 25px;border-radius:25px
 }
-
-.status{text-align:center;color:#8b929e;padding:30px}
-
-.empty{text-align:center;color:#777;padding:40px}
-
-footer{text-align:center;color:#555;padding:30px;font-size:12px}
+.status{text-align:center;color:#89919e;padding:30px}
 
 @media(max-width:650px){
-.nav{min-height:57px;padding:8px 10px}
-.logo{font-size:19px}
-.search{width:150px}
-.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-.logoBox{height:88px}
-.main{padding:14px 10px 40px}
-.now{font-size:17px}
+ .logo{font-size:17px}
+ .search{width:150px}
+ .grid{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:9px
+ }
+ .logoBox{height:90px}
 }
 
 @media(orientation:landscape) and (max-height:600px){
-.player{height:calc(100vh - 57px);max-height:none;aspect-ratio:auto}
+ .player{
+  height:100vh;
+  aspect-ratio:auto
+ }
 }
 </style>
 </head>
@@ -155,48 +176,46 @@ footer{text-align:center;color:#555;padding:30px;font-size:12px}
 
 <header>
 <div class="nav">
-
-<div class="logo">
-<b>HAMOUDA</b> TV PRO 📺
-</div>
-
+<div class="logo"><b>HAMOUDA</b> TV PRO 📺</div>
 <div class="search">
-<input id="search" type="search" placeholder="🔎 ابحث عن قناة">
+<input id="search" placeholder="🔎 ابحث عن قناة">
 </div>
-
 </div>
 </header>
 
-<section class="hero">
 <div class="player">
 
-<video id="video" controls autoplay muted playsinline></video>
+<video id="video" controls playsinline preload="none"></video>
 
-<div class="playerTitle">
-<div class="live">● مباشر</div>
-<div class="now" id="now">اختر قناة للمشاهدة</div>
+<div class="playerTop">
+<span class="live">🔴 LIVE</span>
+<div id="channelName" class="channelName">
+اختر قناة للمشاهدة
+</div>
+</div>
+
+<div id="loader" class="loader">
+<div class="spinner"></div>
+<div>جاري الاتصال بالبث...</div>
+</div>
+
+<div id="error" class="error">
+<div id="errorText">تعذر تشغيل القناة</div>
+<button onclick="retry()">🔄 إعادة المحاولة</button>
 </div>
 
 </div>
-</section>
 
-<main class="main">
+<main>
 
-<div class="heading">
-<h2>🌍 التصنيفات</h2>
-</div>
+<div class="title">🌍 التصنيفات</div>
+<div id="categories" class="row"></div>
 
-<div id="categories" class="categories"></div>
-
-<div class="heading">
-<h2>🌐 الدول</h2>
-<div id="count" class="count"></div>
-</div>
-
-<div id="countries" class="countries"></div>
+<div class="title">🌐 البلدان</div>
+<div id="countries" class="row"></div>
 
 <div id="status" class="status">
-⏳ جاري تجهيز القنوات...
+⏳ جاري تحميل القنوات...
 </div>
 
 <div id="grid" class="grid"></div>
@@ -207,144 +226,132 @@ footer{text-align:center;color:#555;padding:30px;font-size:12px}
 
 </main>
 
-<footer>
-HAMOUDA TV PRO 📺<br>
-World Television
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-
 <script>
 
-const API_CHANNELS =
+const CHANNELS=
 "https://iptv-org.github.io/api/channels.json";
 
-const API_STREAMS =
+const STREAMS=
 "https://iptv-org.github.io/api/streams.json";
 
 const BATCH=50;
 
 let channels=[];
 let streams=new Map();
-
 let filtered=[];
 let shown=0;
+let category="all";
+let country="all";
+let current=null;
+let hls=null;
+let retryTimer=null;
 
-let selectedCategory="all";
-let selectedCountry="all";
 
-const video=document.getElementById("video");
+/* الدول */
 
-
-/* أسماء الدول */
-
-const countryNames={
-DZ:"🇩🇿 الجزائر",
-EG:"🇪🇬 مصر",
-MA:"🇲🇦 المغرب",
-TN:"🇹🇳 تونس",
-SA:"🇸🇦 السعودية",
-AE:"🇦🇪 الإمارات",
-QA:"🇶🇦 قطر",
-KW:"🇰🇼 الكويت",
-JO:"🇯🇴 الأردن",
-LB:"🇱🇧 لبنان",
-IQ:"🇮🇶 العراق",
-SY:"🇸🇾 سوريا",
-PS:"🇵🇸 فلسطين",
-FR:"🇫🇷 فرنسا",
-GB:"🇬🇧 بريطانيا",
-DE:"🇩🇪 ألمانيا",
-IT:"🇮🇹 إيطاليا",
-ES:"🇪🇸 إسبانيا",
-PT:"🇵🇹 البرتغال",
-NL:"🇳🇱 هولندا",
-BE:"🇧🇪 بلجيكا",
-CH:"🇨🇭 سويسرا",
-AT:"🇦🇹 النمسا",
-US:"🇺🇸 الولايات المتحدة",
-CA:"🇨🇦 كندا",
-MX:"🇲🇽 المكسيك",
-BR:"🇧🇷 البرازيل",
-AR:"🇦🇷 الأرجنتين",
-TR:"🇹🇷 تركيا",
-IN:"🇮🇳 الهند",
-JP:"🇯🇵 اليابان",
-KR:"🇰🇷 كوريا الجنوبية",
-CN:"🇨🇳 الصين",
-AU:"🇦🇺 أستراليا",
-ZA:"🇿🇦 جنوب أفريقيا",
-NG:"🇳🇬 نيجيريا",
-RU:"🇷🇺 روسيا"
+const C={
+DZ:["🇩🇿","الجزائر"],
+MA:["🇲🇦","المغرب"],
+TN:["🇹🇳","تونس"],
+EG:["🇪🇬","مصر"],
+LY:["🇱🇾","ليبيا"],
+SA:["🇸🇦","السعودية"],
+AE:["🇦🇪","الإمارات"],
+QA:["🇶🇦","قطر"],
+KW:["🇰🇼","الكويت"],
+JO:["🇯🇴","الأردن"],
+LB:["🇱🇧","لبنان"],
+IQ:["🇮🇶","العراق"],
+PS:["🇵🇸","فلسطين"],
+FR:["🇫🇷","فرنسا"],
+GB:["🇬🇧","بريطانيا"],
+DE:["🇩🇪","ألمانيا"],
+IT:["🇮🇹","إيطاليا"],
+ES:["🇪🇸","إسبانيا"],
+PT:["🇵🇹","البرتغال"],
+NL:["🇳🇱","هولندا"],
+BE:["🇧🇪","بلجيكا"],
+CH:["🇨🇭","سويسرا"],
+SE:["🇸🇪","السويد"],
+NO:["🇳🇴","النرويج"],
+DK:["🇩🇰","الدنمارك"],
+FI:["🇫🇮","فنلندا"],
+GR:["🇬🇷","اليونان"],
+TR:["🇹🇷","تركيا"],
+RU:["🇷🇺","روسيا"],
+US:["🇺🇸","أمريكا"],
+CA:["🇨🇦","كندا"],
+MX:["🇲🇽","المكسيك"],
+BR:["🇧🇷","البرازيل"],
+AR:["🇦🇷","الأرجنتين"],
+CL:["🇨🇱","تشيلي"],
+CO:["🇨🇴","كولومبيا"],
+IN:["🇮🇳","الهند"],
+JP:["🇯🇵","اليابان"],
+KR:["🇰🇷","كوريا"],
+CN:["🇨🇳","الصين"],
+ID:["🇮🇩","إندونيسيا"],
+MY:["🇲🇾","ماليزيا"],
+TH:["🇹🇭","تايلاند"],
+PH:["🇵🇭","الفلبين"],
+AU:["🇦🇺","أستراليا"],
+NZ:["🇳🇿","نيوزيلندا"],
+ZA:["🇿🇦","جنوب أفريقيا"],
+NG:["🇳🇬","نيجيريا"]
 };
 
-
-/* تصنيفات عامة */
-
-const europe=[
-"FR","GB","DE","IT","ES","PT","NL","BE",
-"CH","AT","TR","RU"
+const ARAB=[
+"DZ","MA","TN","EG","LY","SA","AE",
+"QA","KW","JO","LB","IQ","PS"
 ];
 
-const arab=[
-"DZ","EG","MA","TN","SA","AE","QA","KW",
-"JO","LB","IQ","SY","PS"
+const EUROPE=[
+"FR","GB","DE","IT","ES","PT","NL",
+"BE","CH","SE","NO","DK","FI","GR",
+"TR","RU"
 ];
 
-const america=[
-"US","CA","MX","BR","AR"
+const AMERICA=[
+"US","CA","MX","BR","AR","CL","CO"
 ];
 
-const asia=[
-"IN","JP","KR","CN","AU"
+const ASIA=[
+"IN","JP","KR","CN","ID","MY","TH","PH"
 ];
 
+
+/* تحميل */
 
 async function load(){
 
 try{
 
 const [a,b]=await Promise.all([
-fetch(API_CHANNELS),
-fetch(API_STREAMS)
+fetch(CHANNELS),
+fetch(STREAMS)
 ]);
 
-const channelData=await a.json();
-const streamData=await b.json();
+const cd=await a.json();
+const sd=await b.json();
 
-
-streamData.forEach(s=>{
-
-if(s.channel && s.url && !streams.has(s.channel)){
-streams.set(s.channel,s.url);
-}
-
+sd.forEach(x=>{
+ if(x.channel && x.url && !streams.has(x.channel)){
+  streams.set(x.channel,x.url);
+ }
 });
 
-
-channels=channelData.filter(c=>
-streams.has(c.id)
-);
-
-
-/*
-نخلي القنوات اللي عندها بث فعلي فقط
-*/
+channels=cd.filter(x=>streams.has(x.id));
 
 buildCategories();
 buildCountries();
-
-applyFilters();
+apply();
 
 document.getElementById("status").style.display="none";
 
-
 }catch(e){
 
-console.error(e);
-
 document.getElementById("status").innerHTML=
-"❌ تعذر تحميل القنوات.<br>تحقق من الإنترنت وأعد المحاولة.";
+"❌ تعذر تحميل القنوات. تحقق من الإنترنت.";
 
 }
 
@@ -357,123 +364,83 @@ function buildCategories(){
 
 const box=document.getElementById("categories");
 
-box.innerHTML="";
-
-addCategory(box,"all","🌍 العالم");
-
-addCategory(box,"arab","🕌 عربي");
-
-addCategory(box,"europe","🇪🇺 أوروبا");
-
-addCategory(box,"america","🌎 أمريكا");
-
-addCategory(box,"asia","🌏 آسيا");
-
-}
-
-
-/* زر تصنيف */
-
-function addCategory(box,id,text){
+[
+["all","🌍 العالم"],
+["arab","🕌 العربية"],
+["europe","🇪🇺 أوروبا"],
+["america","🌎 أمريكا"],
+["asia","🌏 آسيا"]
+].forEach(x=>{
 
 const b=document.createElement("button");
-
-b.className="filter";
-
-if(id==="all")b.classList.add("active");
-
-b.textContent=text;
+b.className="btn"+(x[0]=="all"?" active":"");
+b.textContent=x[1];
 
 b.onclick=()=>{
 
-document.querySelectorAll("#categories .filter")
-.forEach(x=>x.classList.remove("active"));
+category=x[0];
+
+box.querySelectorAll(".btn")
+.forEach(z=>z.classList.remove("active"));
 
 b.classList.add("active");
 
-selectedCategory=id;
-
-selectedCountry="all";
-
-document.querySelectorAll("#countries .filter")
-.forEach(x=>x.classList.remove("active"));
-
-document.querySelector("#countries .filter")
-?.classList.add("active");
-
-applyFilters();
+apply();
 
 };
 
 box.appendChild(b);
 
+});
+
 }
 
 
-/* الدول */
+/* البلدان */
 
 function buildCountries(){
 
 const box=document.getElementById("countries");
 
-box.innerHTML="";
-
 const all=document.createElement("button");
 
-all.className="filter active";
-
-all.textContent="🌍 الكل";
+all.className="btn active";
+all.textContent="🌍 كل البلدان";
 
 all.onclick=()=>{
-
-selectedCountry="all";
-
-document.querySelectorAll("#countries .filter")
-.forEach(x=>x.classList.remove("active"));
-
-all.classList.add("active");
-
-applyFilters();
-
+ country="all";
+ box.querySelectorAll(".btn")
+ .forEach(x=>x.classList.remove("active"));
+ all.classList.add("active");
+ apply();
 };
 
 box.appendChild(all);
 
+const found=new Set();
 
-const set=new Set();
-
-channels.forEach(c=>{
-
-if(Array.isArray(c.countries)){
-
-c.countries.forEach(x=>set.add(x));
-
-}
-
+channels.forEach(x=>{
+ if(x.country) found.add(x.country);
 });
 
-
-Array.from(set)
-.sort()
-.forEach(code=>{
+[...found].sort().forEach(code=>{
 
 const b=document.createElement("button");
-
-b.className="filter";
+b.className="btn";
 
 b.textContent=
-countryNames[code] || ("🌐 "+code);
+C[code] ? C[code][0]+" "+C[code][1] : "🌐 "+code;
 
 b.onclick=()=>{
 
-selectedCountry=code;
+country=code;
 
-document.querySelectorAll("#countries .filter")
+box.querySelectorAll(".btn")
 .forEach(x=>x.classList.remove("active"));
 
 b.classList.add("active");
 
-applyFilters();
+apply();
 
 };
 
@@ -484,273 +451,325 @@ box.appendChild(b);
 }
 
 
-/* التصفية */
+/* فلترة */
 
-function applyFilters(){
+function apply(){
 
-const search=
-document.getElementById("search")
+const q=document.getElementById("search")
 .value.toLowerCase().trim();
 
+filtered=channels.filter(x=>{
 
-filtered=channels.filter(c=>{
-
-const name=(c.name||"").toLowerCase();
-
-if(search && !name.includes(search))
+if(q && !(x.name||"").toLowerCase().includes(q))
 return false;
 
-
-if(selectedCountry!=="all"){
-
-if(
-!Array.isArray(c.countries) ||
-!c.countries.includes(selectedCountry)
-)return false;
-
-}
-
-
-if(selectedCategory!=="all"){
-
-const countries=c.countries||[];
-
-if(selectedCategory==="arab" &&
-!countries.some(x=>arab.includes(x)))
+if(country!="all" && x.country!=country)
 return false;
 
-if(selectedCategory==="europe" &&
-!countries.some(x=>europe.includes(x)))
+if(category=="arab" && !ARAB.includes(x.country))
 return false;
 
-if(selectedCategory==="america" &&
-!countries.some(x=>america.includes(x)))
+if(category=="europe" && !EUROPE.includes(x.country))
 return false;
 
-if(selectedCategory==="asia" &&
-!countries.some(x=>asia.includes(x)))
+if(category=="america" && !AMERICA.includes(x.country))
 return false;
 
-}
-
+if(category=="asia" && !ASIA.includes(x.country))
+return false;
 
 return true;
 
 });
 
-
 filtered.sort((a,b)=>
 (a.name||"").localeCompare(b.name||"")
 );
 
-
 shown=0;
-
 document.getElementById("grid").innerHTML="";
 
-renderNext();
+render();
 
 }
 
 
-/* تحميل 50 فقط */
+/* 50 قناة */
 
-function renderNext(){
+function render(){
 
 const grid=document.getElementById("grid");
 
-const next=
-Math.min(
-shown+BATCH,
-filtered.length
-);
+const end=Math.min(shown+BATCH,filtered.length);
 
+for(let i=shown;i<end;i++){
+ createCard(filtered[i],grid);
+}
 
-for(let i=shown;i<next;i++){
+shown=end;
 
-createCard(filtered[i],grid);
+document.getElementById("more").style.display=
+shown<filtered.length ? "block":"none";
 
 }
 
 
-shown=next;
+/* البطاقة */
 
-
-document.getElementById("count").textContent=
-filtered.length+" قناة";
-
-
-const more=document.getElementById("more");
-
-more.style.display=
-shown<filtered.length
-?"block":"none";
-
-}
-
-
-/* بطاقة */
-
-function createCard(c,grid){
+function createCard(x,grid){
 
 const card=document.createElement("div");
-
 card.className="card";
 
-
 const logo=document.createElement("div");
-
 logo.className="logoBox";
 
+const flag=document.createElement("div");
+flag.className="flag";
+flag.textContent=C[x.country]
+?C[x.country][0]:"🌐";
 
-if(c.logo){
+logo.appendChild(flag);
+
+if(x.logo){
 
 const img=document.createElement("img");
 
-img.src=c.logo;
-
+img.src=x.logo;
+img.alt=x.name||"";
 img.loading="lazy";
 
-img.alt=c.name||"";
-
 img.onerror=()=>{
-img.remove();
-logo.innerHTML='<div class="noLogo">📺</div>';
+ img.remove();
+ const f=document.createElement("div");
+ f.className="fallback";
+ f.textContent="📺";
+ logo.appendChild(f);
 };
 
 logo.appendChild(img);
 
 }else{
 
-logo.innerHTML='<div class="noLogo">📺</div>';
+const f=document.createElement("div");
+f.className="fallback";
+f.textContent="📺";
+logo.appendChild(f);
 
 }
 
 card.appendChild(logo);
 
-
-const body=document.createElement("div");
-
-body.className="body";
-
+const info=document.createElement("div");
+info.className="info";
 
 const name=document.createElement("div");
-
 name.className="name";
+name.textContent=x.name||"قناة";
 
-name.textContent=c.name||"Channel";
-
-body.appendChild(name);
-
-
-const code=
-(c.countries&&c.countries[0])||"";
-
-const meta=document.createElement("div");
-
-meta.className="meta";
-
-meta.textContent=
-countryNames[code]||"🌍 دولية";
-
-body.appendChild(meta);
-
+const co=document.createElement("div");
+co.className="country";
+co.textContent=C[x.country]
+?C[x.country][0]+" "+C[x.country][1]
+:"🌐 دولية";
 
 const btn=document.createElement("button");
-
 btn.className="watch";
+btn.textContent="▶ مشاهدة الآن";
 
-btn.textContent="▶ مشاهدة";
+btn.onclick=()=>play(x);
 
-btn.onclick=()=>play(c);
+info.appendChild(name);
+info.appendChild(co);
+info.appendChild(btn);
 
-body.appendChild(btn);
-
-card.appendChild(body);
-
+card.appendChild(info);
 grid.appendChild(card);
 
 }
 
 
-/* التشغيل */
+/* المشغل */
 
 function play(channel){
 
 const url=streams.get(channel.id);
 
-if(!url)return;
+if(!url){
 
-
-document.getElementById("now").textContent=
-channel.name||"Live";
-
-
-if(window.hlsPlayer){
-
-window.hlsPlayer.destroy();
-
-window.hlsPlayer=null;
+error("لا يوجد رابط بث للقناة");
+return;
 
 }
+
+current=channel;
+
+document.getElementById("channelName")
+.textContent=channel.name||"Live TV";
+
+start(url);
+
+}
+
+
+function start(url){
+
+clearTimeout(retryTimer);
+
+hideError();
+showLoader();
+
+if(hls){
+
+hls.destroy();
+hls=null;
+
+}
+
+video.pause();
+video.removeAttribute("src");
+video.load();
 
 
 if(
 window.Hls &&
 Hls.isSupported() &&
-/m3u8/i.test(url)
+/\.m3u8/i.test(url)
 ){
 
-const hls=new Hls({
+hls=new Hls({
+
 enableWorker:true,
-lowLatencyMode:false,
+
 maxBufferLength:20,
-maxMaxBufferLength:30
+maxMaxBufferLength:40,
+
+manifestLoadingTimeOut:10000,
+manifestLoadingMaxRetry:2,
+
+levelLoadingMaxRetry:2,
+fragLoadingMaxRetry:2
+
 });
 
-window.hlsPlayer=hls;
-
 hls.loadSource(url);
-
 hls.attachMedia(video);
 
-hls.on(
-Hls.Events.MANIFEST_PARSED,
-()=>{
+hls.on(Hls.Events.MANIFEST_PARSED,()=>{
+
+hideLoader();
+
 video.play().catch(()=>{});
+
+});
+
+hls.on(Hls.Events.ERROR,(e,d)=>{
+
+if(!d.fatal)return;
+
+if(
+d.type===Hls.ErrorTypes.MEDIA_ERROR
+){
+
+hls.recoverMediaError();
+return;
+
 }
-);
+
+if(
+d.type===Hls.ErrorTypes.NETWORK_ERROR
+){
+
+retryTimer=setTimeout(()=>{
+
+if(current){
+
+const u=streams.get(current.id);
+
+if(u)start(u);
+
+}
+
+},3000);
+
+return;
+
+}
+
+error("هذا البث غير متاح داخل المتصفح");
+
+});
 
 }else{
 
 video.src=url;
 
-video.play().catch(()=>{});
+video.load();
 
-}
+video.play()
+.then(()=>hideLoader())
+.catch(()=>{
 
+hideLoader();
 
-window.scrollTo({
-top:0,
-behavior:"smooth"
+error("اضغط ▶ لتشغيل القناة");
+
 });
 
 }
 
+}
 
-/* المزيد */
+
+function showLoader(){
+
+document.getElementById("loader")
+.style.display="flex";
+
+}
+
+function hideLoader(){
+
+document.getElementById("loader")
+.style.display="none";
+
+}
+
+function error(text){
+
+hideLoader();
+
+document.getElementById("errorText")
+.textContent="⚠️ "+text;
+
+document.getElementById("error")
+.style.display="flex";
+
+}
+
+function hideError(){
+
+document.getElementById("error")
+.style.display="none";
+
+}
+
+function retry(){
+
+if(!current)return;
+
+const url=streams.get(current.id);
+
+if(url)start(url);
+
+}
+
 
 document.getElementById("more")
-.onclick=renderNext;
-
-
-/* البحث */
+.onclick=render;
 
 document.getElementById("search")
-.oninput=applyFilters;
-
-
-/* تشغيل */
+.oninput=apply;
 
 load();
 
