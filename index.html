@@ -9,504 +9,256 @@
 
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-
-html,body{
-margin:0;
-background:#07090d;
-color:#fff;
-font-family:Arial,Tahoma,sans-serif
-}
-
+html,body{margin:0;background:#07090d;color:#fff;font-family:Arial,Tahoma,sans-serif}
 body{min-height:100vh}
-
 button,input{font:inherit}
 button{cursor:pointer}
 
 header{
-height:64px;
-position:sticky;
-top:0;
-z-index:50;
-background:#0b0e13ee;
-backdrop-filter:blur(14px);
+height:64px;position:sticky;top:0;z-index:50;
+background:#0b0e13ee;backdrop-filter:blur(14px);
 border-bottom:1px solid #252a33
 }
-
 .header{
-max-width:1400px;
-height:100%;
-margin:auto;
-padding:0 16px;
-display:flex;
-align-items:center;
-gap:15px
+max-width:1400px;height:100%;margin:auto;padding:0 16px;
+display:flex;align-items:center;gap:15px
 }
-
-.logo{
-font-size:21px;
-font-weight:900;
-white-space:nowrap
-}
-
+.logo{font-size:21px;font-weight:900;white-space:nowrap}
 .logo span{color:#e50914}
-
-.search{
-margin-right:auto;
-width:min(340px,50vw)
-}
-
+.search{margin-right:auto;width:min(340px,50vw)}
 .search input{
-width:100%;
-padding:10px 16px;
-border-radius:25px;
-border:1px solid #303640;
-background:#171a20;
-color:#fff;
-outline:none
+width:100%;padding:10px 16px;border-radius:25px;
+border:1px solid #303640;background:#171a20;color:#fff;outline:none
 }
 
-/* HOME */
-
-main{
-max-width:1400px;
-margin:auto;
-padding:20px 15px 60px
-}
-
-.hero{
-padding:25px 4px 20px
-}
-
-.hero h1{
-margin:0;
-font-size:31px
-}
-
-.hero p{
-margin:9px 0 0;
-color:#858d99
-}
-
-.sectionTitle{
-font-size:21px;
-font-weight:bold;
-margin:10px 0 15px
-}
-
-/* COUNTRIES */
+main{max-width:1400px;margin:auto;padding:20px 15px 60px}
+.hero{padding:25px 4px 20px}
+.hero h1{margin:0;font-size:31px}
+.hero p{margin:9px 0 0;color:#858d99}
+.sectionTitle{font-size:21px;font-weight:bold;margin:10px 0 15px}
 
 .countries{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(145px,1fr));
-gap:13px
+display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:13px
 }
-
 .country{
-min-height:135px;
-border:1px solid #292e37;
-border-radius:14px;
+min-height:135px;border:1px solid #292e37;border-radius:14px;
 background:linear-gradient(145deg,#171b22,#0e1116);
-color:#fff;
-padding:14px 8px;
-transition:.18s
+color:#fff;padding:14px 8px;transition:.18s
 }
-
-.country:hover{
-transform:translateY(-3px);
-border-color:#e50914
-}
-
-.flag{
-font-size:48px;
-line-height:1.1
-}
-
-.countryName{
-margin-top:10px;
-font-size:16px;
-font-weight:bold
-}
-
-.countryCount{
-margin-top:6px;
-color:#777f8b;
-font-size:12px
-}
-
-/* CHANNELS */
+.country:hover{transform:translateY(-3px);border-color:#e50914}
+.flag{font-size:48px;line-height:1.1}
+.countryName{margin-top:10px;font-size:16px;font-weight:bold}
+.countryCount{margin-top:6px;color:#777f8b;font-size:12px}
 
 .channelHeader{
-display:none;
-align-items:center;
-gap:10px;
-margin:20px 0
+display:none;align-items:center;gap:10px;margin:20px 0
 }
-
 .backCountries{
-border:1px solid #303640;
-background:#171a20;
-color:#fff;
-padding:9px 15px;
-border-radius:9px
+border:1px solid #303640;background:#171a20;color:#fff;
+padding:9px 15px;border-radius:9px
 }
 
 .channels{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
-gap:14px
+display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px
 }
-
 .card{
-overflow:hidden;
-background:#12151b;
-border:1px solid #272c35;
-border-radius:13px;
-transition:.18s
+overflow:hidden;background:#12151b;border:1px solid #272c35;
+border-radius:13px;transition:.18s
 }
-
-.card:hover{
-transform:translateY(-3px);
-border-color:#444b57
-}
+.card:hover{transform:translateY(-3px);border-color:#444b57}
 
 .cardLogo{
-height:125px;
-position:relative;
-background:#080a0e;
-display:flex;
-justify-content:center;
-align-items:center
+height:125px;position:relative;background:#080a0e;
+display:flex;justify-content:center;align-items:center
 }
 
-.cardLogo>img{
-width:100%;
-height:100%;
-object-fit:contain;
-padding:13px
+.realChannelLogo{
+width:100%;height:100%;object-fit:contain;padding:13px;display:block
 }
 
 .fallbackLogo{
-width:100%;
-height:100%;
-display:flex;
-align-items:center;
-justify-content:center
+width:100%;height:100%;
+display:flex;align-items:center;justify-content:center
 }
-
 .fallbackLogo img{
-width:75%;
-height:75%;
-object-fit:contain
+width:75%;height:75%;object-fit:contain
 }
 
 .cardFlag{
-position:absolute;
-right:8px;
-top:7px;
-z-index:2;
-font-size:23px;
-filter:drop-shadow(0 2px 3px #000)
+position:absolute;right:8px;top:7px;z-index:2;
+font-size:23px;filter:drop-shadow(0 2px 3px #000)
 }
 
-.cardBody{
-padding:11px
-}
-
+.cardBody{padding:11px}
 .channelName{
-font-weight:bold;
-white-space:nowrap;
-overflow:hidden;
-text-overflow:ellipsis
+font-weight:bold;white-space:nowrap;overflow:hidden;text-overflow:ellipsis
 }
-
 .watch{
-width:100%;
-margin-top:10px;
-padding:9px;
-border:0;
-border-radius:8px;
-background:#e50914;
-color:#fff
+width:100%;margin-top:10px;padding:9px;border:0;border-radius:8px;
+background:#e50914;color:#fff
 }
-
 .more{
-display:block;
-margin:25px auto;
-padding:11px 25px;
-border:1px solid #303640;
-border-radius:24px;
-background:#171a20;
-color:#fff
+display:block;margin:25px auto;padding:11px 25px;
+border:1px solid #303640;border-radius:24px;background:#171a20;color:#fff
 }
-
-.status{
-text-align:center;
-color:#858d99;
-padding:30px
-}
+.status{text-align:center;color:#858d99;padding:30px}
 
 /* PLAYER */
 
 #player{
-display:none;
-background:#000;
-position:relative
+display:none;background:#000;position:relative
 }
-
 .playerBox{
-max-width:1400px;
-margin:auto;
-background:#000;
-position:relative
+max-width:1400px;margin:auto;background:#000;position:relative
 }
-
 video.mainVideo{
-display:block;
-width:100%;
-height:auto;
-min-height:230px;
-max-height:78vh;
-background:#000;
-object-fit:contain
+display:block;width:100%;height:auto;min-height:230px;
+max-height:78vh;background:#000;object-fit:contain
 }
-
 .playerInfo{
-padding:10px 14px;
-background:#0d1015;
-display:flex;
-align-items:center;
-gap:9px
+padding:10px 14px;background:#0d1015;
+display:flex;align-items:center;gap:9px
 }
-
-.live{
-background:#e50914;
-padding:4px 7px;
-border-radius:5px;
-font-size:10px
-}
-
-.nowName{
-font-weight:bold
-}
+.live{background:#e50914;padding:4px 7px;border-radius:5px;font-size:10px}
+.nowName{font-weight:bold}
 
 /* CONTROLS */
 
 .controls{
-display:flex;
-justify-content:center;
-align-items:center;
-gap:8px;
-padding:9px;
-background:#0d1015
+display:flex;justify-content:center;align-items:center;gap:8px;
+padding:9px;background:#0d1015
 }
-
 .control{
-width:45px;
-height:41px;
-border:1px solid #303640;
-border-radius:9px;
-background:#181c22;
-color:#fff;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:18px
+width:45px;height:41px;border:1px solid #303640;border-radius:9px;
+background:#181c22;color:#fff;display:flex;
+align-items:center;justify-content:center;font-size:18px
 }
-
-.control:hover{
-background:#e50914
-}
+.control:hover{background:#e50914}
 
 /* LOADING */
 
 .loading{
-position:absolute;
-inset:0;
-z-index:5;
-display:none;
-align-items:center;
-justify-content:center;
-background:#0008
+position:absolute;inset:0;z-index:5;display:none;
+align-items:center;justify-content:center;background:#0008
 }
-
 .spinner{
-width:42px;
-height:42px;
-border:4px solid #444;
-border-top-color:#e50914;
-border-radius:50%;
+width:42px;height:42px;border:4px solid #444;
+border-top-color:#e50914;border-radius:50%;
 animation:spin .7s linear infinite
 }
+@keyframes spin{to{transform:rotate(360deg)}}
 
-@keyframes spin{
-to{transform:rotate(360deg)}
-}
-
-/* MINI PLAYER */
+/* MINI */
 
 .miniPlayer{
-display:none;
-position:fixed;
-left:12px;
-bottom:12px;
-width:280px;
-z-index:100;
-overflow:hidden;
-border:1px solid #303640;
-border-radius:12px;
-background:#080a0e;
-box-shadow:0 12px 40px #000b
+display:none;position:fixed;left:12px;bottom:12px;width:280px;z-index:100;
+overflow:hidden;border:1px solid #303640;border-radius:12px;
+background:#080a0e;box-shadow:0 12px 40px #000b
 }
-
 .miniPlayer video{
-display:block;
-width:100%;
-height:155px;
-min-height:0;
-background:#000;
-object-fit:contain
+display:block;width:100%;height:155px;min-height:0;
+background:#000;object-fit:contain
 }
-
 .miniBar{
-height:39px;
-display:flex;
-align-items:center;
-gap:8px;
-padding:0 8px
+height:39px;display:flex;align-items:center;gap:8px;padding:0 8px
 }
-
 .miniBar span{
-flex:1;
-overflow:hidden;
-white-space:nowrap;
-text-overflow:ellipsis;
-font-size:12px
+flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:12px
 }
-
-.miniClose{
-border:0;
-background:none;
-color:#fff;
-font-size:20px
-}
+.miniClose{border:0;background:none;color:#fff;font-size:20px}
 
 /* MOBILE */
 
 @media(max-width:900px){
 
 .landscapeButton{display:flex}
-
 .hero h1{font-size:26px}
 
 .countries{
-grid-template-columns:repeat(3,1fr);
-gap:8px
+grid-template-columns:repeat(3,1fr);gap:8px
 }
-
-.country{
-min-height:120px
-}
-
-.flag{
-font-size:38px
-}
-
-.countryName{
-font-size:14px
-}
+.country{min-height:120px}
+.flag{font-size:38px}
+.countryName{font-size:14px}
 
 .channels{
-grid-template-columns:repeat(2,1fr);
-gap:9px
+grid-template-columns:repeat(2,1fr);gap:9px
 }
-
-.cardLogo{
-height:95px
-}
-
-.search{
-width:45vw
-}
-
+.cardLogo{height:95px}
+.search{width:45vw}
 }
 
 /* LANDSCAPE */
 
 @media(max-width:900px) and (orientation:landscape){
 
-header{
-display:none
-}
+header{display:none}
 
 #player{
-position:fixed;
-inset:0;
-z-index:200;
-width:100vw;
-height:100vh;
-background:#000
+position:fixed;inset:0;z-index:200;
+width:100vw;height:100vh;background:#000
 }
 
 .playerBox{
-width:100%;
-height:100%;
-max-width:none
+width:100%;height:100%;max-width:none
 }
 
 video.mainVideo{
-width:100%;
-height:100%;
-min-height:0;
-max-height:none
+width:100%;height:100%;min-height:0;max-height:none
 }
 
 .playerInfo{
-position:absolute;
-top:0;
-right:0;
-left:0;
-z-index:10;
+position:absolute;top:0;right:0;left:0;z-index:10;
 background:linear-gradient(#000c,transparent);
-padding:13px;
-pointer-events:none
+padding:13px;pointer-events:none
 }
+
+/*
+الأزرار تبقى فوق الفيديو.
+لا نعتمد على opacity لإخفائها.
+*/
 
 .controls{
 position:absolute;
 bottom:0;
 right:0;
 left:0;
-z-index:20;
-padding:25px 10px 12px;
+z-index:1000;
+padding:30px 12px 14px;
 background:linear-gradient(transparent,#000e);
+display:flex;
+justify-content:center;
+align-items:center;
+gap:10px;
 opacity:0;
+visibility:hidden;
 pointer-events:none;
-transition:opacity .2s
+transition:opacity .2s,visibility .2s
 }
 
 #player.showControls .controls{
 opacity:1;
+visibility:visible;
 pointer-events:auto
 }
 
 .control{
-width:48px;
-height:43px;
-background:#151820dd
+width:52px;
+height:46px;
+font-size:20px;
+background:#151820ee;
+border:1px solid #555;
+position:relative;
+z-index:1001
 }
 
-.miniPlayer{
-display:none!important
+.miniPlayer{display:none!important}
 }
 
-}
+/* DESKTOP */
 
 @media(min-width:901px){
-
-.landscapeButton{
-display:none
-}
-
+.landscapeButton{display:none}
 }
 </style>
 </head>
@@ -515,18 +267,10 @@ display:none
 
 <header>
 <div class="header">
-
-<div class="logo">
-<span>HAMOUDA</span> TV
-</div>
-
+<div class="logo"><span>HAMOUDA</span> TV</div>
 <div class="search">
-<input
-id="search"
-type="search"
-placeholder="ابحث عن قناة">
+<input id="search" type="search" placeholder="ابحث عن قناة">
 </div>
-
 </div>
 </header>
 
@@ -551,89 +295,46 @@ preload="none">
 
 <div class="playerInfo">
 <span class="live">LIVE</span>
-<span id="nowName" class="nowName">
-القناة
-</span>
+<span id="nowName" class="nowName">القناة</span>
 </div>
 
 <div class="controls">
 
-<!-- السابق -->
-
-<button
-class="control"
-title="السابق"
-onclick="previousChannel()">
+<button class="control" title="السابق" onclick="previousChannel(event)">
 ‹
 </button>
 
-<!-- التالي -->
-
-<button
-class="control"
-title="التالي"
-onclick="nextChannel()">
+<button class="control" title="التالي" onclick="nextChannel(event)">
 ›
 </button>
 
-<!-- Landscape -->
-
-<button
-class="control landscapeButton"
-title="Landscape"
-onclick="landscapeMode()">
+<button class="control landscapeButton" title="Landscape" onclick="landscapeMode(event)">
 ⛶
 </button>
 
-<!-- Fullscreen -->
-
-<button
-class="control"
-title="ملء الشاشة"
-onclick="fullScreen()">
+<button class="control" title="ملء الشاشة" onclick="fullScreen(event)">
 ⛶
 </button>
 
-<!-- الرئيسية -->
-
-<button
-class="control"
-title="القائمة الرئيسية"
-onclick="backHome()">
+<button class="control" title="القائمة الرئيسية" onclick="backHome(event)">
 ⌂
 </button>
 
 </div>
 
 </div>
-
 </section>
 
 
 <!-- MINI PLAYER -->
 
-<div
-id="miniPlayer"
-class="miniPlayer">
+<div id="miniPlayer" class="miniPlayer">
 
-<video
-id="miniVideo"
-muted
-playsinline>
-</video>
+<video id="miniVideo" muted playsinline></video>
 
 <div class="miniBar">
-
-<span id="miniName">
-القناة
-</span>
-
-<button
-class="miniClose"
-onclick="closeMini()">
-×
-</button>
-
+<span id="miniName">القناة</span>
+<button class="miniClose" onclick="closeMini()">×</button>
 </div>
 
 </div>
@@ -644,55 +345,28 @@ onclick="closeMini()">
 <main id="home">
 
 <div class="hero">
-
-<h1>
-عالم التلفزيون بين يديك
-</h1>
-
-<p>
-اختر بلدًا لمشاهدة القنوات المتوفرة
-</p>
-
+<h1>عالم التلفزيون بين يديك</h1>
+<p>اختر بلدًا لمشاهدة القنوات المتوفرة</p>
 </div>
 
-<div class="sectionTitle">
-البلدان
-</div>
+<div class="sectionTitle">البلدان</div>
 
-<div
-id="countries"
-class="countries">
-</div>
+<div id="countries" class="countries"></div>
 
-<div
-id="channelHeader"
-class="channelHeader">
-
-<button
-class="backCountries"
-onclick="showCountries()">
+<div id="channelHeader" class="channelHeader">
+<button class="backCountries" onclick="showCountries()">
 رجوع للبلدان
 </button>
-
 <strong id="countryTitle"></strong>
-
 </div>
 
-<div
-id="channels"
-class="channels">
-</div>
+<div id="channels" class="channels"></div>
 
-<div
-id="status"
-class="status">
+<div id="status" class="status">
 جاري تحميل القنوات...
 </div>
 
-<button
-id="more"
-class="more"
-style="display:none">
+<button id="more" class="more" style="display:none">
 عرض 50 قناة أخرى
 </button>
 
@@ -701,172 +375,99 @@ style="display:none">
 
 <script>
 
-/* SETTINGS */
+const CHANNELS_URL="https://iptv-org.github.io/api/channels.json";
+const STREAMS_URL="https://iptv-org.github.io/api/streams.json";
+const BATCH_SIZE=50;
 
-const CHANNELS_URL =
-"https://iptv-org.github.io/api/channels.json";
-
-const STREAMS_URL =
-"https://iptv-org.github.io/api/streams.json";
-
-const BATCH_SIZE = 50;
-
-
-/* VARIABLES */
-
-let channels = [];
-let streams = new Map();
-
-let filtered = [];
-let shown = 0;
-
-let currentIndex = 0;
-let currentChannel = null;
-
-let hls = null;
-let controlsTimer = null;
+let channels=[];
+let streams=new Map();
+let filtered=[];
+let shown=0;
+let currentIndex=0;
+let currentChannel=null;
+let hls=null;
+let controlsTimer=null;
 
 
 /* FLAGS */
 
-const countries = {
+const countries={
 
-DZ:["🇩🇿","الجزائر"],
-MA:["🇲🇦","المغرب"],
-TN:["🇹🇳","تونس"],
-EG:["🇪🇬","مصر"],
-LY:["🇱🇾","ليبيا"],
-MR:["🇲🇷","موريتانيا"],
+DZ:["🇩🇿","الجزائر"],MA:["🇲🇦","المغرب"],TN:["🇹🇳","تونس"],
+EG:["🇪🇬","مصر"],LY:["🇱🇾","ليبيا"],MR:["🇲🇷","موريتانيا"],
 
-SA:["🇸🇦","السعودية"],
-AE:["🇦🇪","الإمارات"],
-QA:["🇶🇦","قطر"],
-KW:["🇰🇼","الكويت"],
-BH:["🇧🇭","البحرين"],
-OM:["🇴🇲","عُمان"],
+SA:["🇸🇦","السعودية"],AE:["🇦🇪","الإمارات"],QA:["🇶🇦","قطر"],
+KW:["🇰🇼","الكويت"],BH:["🇧🇭","البحرين"],OM:["🇴🇲","عُمان"],
 
-JO:["🇯🇴","الأردن"],
-LB:["🇱🇧","لبنان"],
-IQ:["🇮🇶","العراق"],
-SY:["🇸🇾","سوريا"],
-PS:["🇵🇸","فلسطين"],
+JO:["🇯🇴","الأردن"],LB:["🇱🇧","لبنان"],IQ:["🇮🇶","العراق"],
+SY:["🇸🇾","سوريا"],PS:["🇵🇸","فلسطين"],
 
-FR:["🇫🇷","فرنسا"],
-GB:["🇬🇧","بريطانيا"],
-DE:["🇩🇪","ألمانيا"],
-IT:["🇮🇹","إيطاليا"],
-ES:["🇪🇸","إسبانيا"],
-PT:["🇵🇹","البرتغال"],
-NL:["🇳🇱","هولندا"],
-BE:["🇧🇪","بلجيكا"],
-CH:["🇨🇭","سويسرا"],
-AT:["🇦🇹","النمسا"],
-IE:["🇮🇪","أيرلندا"],
-SE:["🇸🇪","السويد"],
-NO:["🇳🇴","النرويج"],
-DK:["🇩🇰","الدنمارك"],
-FI:["🇫🇮","فنلندا"],
-GR:["🇬🇷","اليونان"],
-TR:["🇹🇷","تركيا"],
-RU:["🇷🇺","روسيا"],
+FR:["🇫🇷","فرنسا"],GB:["🇬🇧","بريطانيا"],DE:["🇩🇪","ألمانيا"],
+IT:["🇮🇹","إيطاليا"],ES:["🇪🇸","إسبانيا"],PT:["🇵🇹","البرتغال"],
+NL:["🇳🇱","هولندا"],BE:["🇧🇪","بلجيكا"],CH:["🇨🇭","سويسرا"],
+AT:["🇦🇹","النمسا"],IE:["🇮🇪","أيرلندا"],SE:["🇸🇪","السويد"],
+NO:["🇳🇴","النرويج"],DK:["🇩🇰","الدنمارك"],FI:["🇫🇮","فنلندا"],
+GR:["🇬🇷","اليونان"],TR:["🇹🇷","تركيا"],RU:["🇷🇺","روسيا"],
 
-US:["🇺🇸","أمريكا"],
-CA:["🇨🇦","كندا"],
-MX:["🇲🇽","المكسيك"],
-BR:["🇧🇷","البرازيل"],
-AR:["🇦🇷","الأرجنتين"],
-CL:["🇨🇱","تشيلي"],
+US:["🇺🇸","أمريكا"],CA:["🇨🇦","كندا"],MX:["🇲🇽","المكسيك"],
+BR:["🇧🇷","البرازيل"],AR:["🇦🇷","الأرجنتين"],CL:["🇨🇱","تشيلي"],
 CO:["🇨🇴","كولومبيا"],
 
-IN:["🇮🇳","الهند"],
-JP:["🇯🇵","اليابان"],
-KR:["🇰🇷","كوريا الجنوبية"],
-CN:["🇨🇳","الصين"],
-ID:["🇮🇩","إندونيسيا"],
-MY:["🇲🇾","ماليزيا"],
-TH:["🇹🇭","تايلاند"],
-PH:["🇵🇭","الفلبين"],
+IN:["🇮🇳","الهند"],JP:["🇯🇵","اليابان"],KR:["🇰🇷","كوريا الجنوبية"],
+CN:["🇨🇳","الصين"],ID:["🇮🇩","إندونيسيا"],MY:["🇲🇾","ماليزيا"],
+TH:["🇹🇭","تايلاند"],PH:["🇵🇭","الفلبين"],
 
-AU:["🇦🇺","أستراليا"],
-NZ:["🇳🇿","نيوزيلندا"],
-
-ZA:["🇿🇦","جنوب أفريقيا"],
-NG:["🇳🇬","نيجيريا"]
+AU:["🇦🇺","أستراليا"],NZ:["🇳🇿","نيوزيلندا"],
+ZA:["🇿🇦","جنوب أفريقيا"],NG:["🇳🇬","نيجيريا"]
 
 };
 
 
-/* LOAD DATA */
+/* LOAD */
 
 async function loadData(){
 
 try{
 
-const responses =
-await Promise.all([
+const responses=await Promise.all([
 fetch(CHANNELS_URL),
 fetch(STREAMS_URL)
 ]);
 
-const channelData =
-await responses[0].json();
-
-const streamData =
-await responses[1].json();
+const channelData=await responses[0].json();
+const streamData=await responses[1].json();
 
 streamData.forEach(stream=>{
 
-if(
-stream.channel &&
-stream.url &&
-!streams.has(stream.channel)
-){
-
-streams.set(
-stream.channel,
-stream.url
-);
-
+if(stream.channel&&stream.url&&!streams.has(stream.channel)){
+streams.set(stream.channel,stream.url);
 }
 
 });
 
-channels =
-channelData.filter(channel =>
-streams.has(channel.id)
-);
+channels=channelData.filter(channel=>streams.has(channel.id));
 
 channels.sort((a,b)=>
-(a.name||"").localeCompare(
-(b.name||""),
-"ar"
-));
+(a.name||"").localeCompare((b.name||""),"ar")
+);
 
 buildCountries();
 
-document.getElementById("status")
-.style.display="none";
+document.getElementById("status").style.display="none";
 
-/* أول قناة تشتغل تلقائيًا */
+/* أول قناة */
 
 if(channels.length){
-
 currentChannel=channels[0];
 currentIndex=0;
-
-openChannel(
-channels[0],
-0
-);
-
+openChannel(channels[0],0);
 }
 
 }catch(error){
 
 console.error(error);
 
-document.getElementById("status")
-.textContent=
+document.getElementById("status").textContent=
 "تعذر تحميل القنوات. تحقق من اتصال الإنترنت.";
 
 }
@@ -878,68 +479,41 @@ document.getElementById("status")
 
 function buildCountries(){
 
-const box =
-document.getElementById("countries");
-
+const box=document.getElementById("countries");
 box.innerHTML="";
 
-const countryCodes =
-[...new Set(
-channels
-.map(c=>c.country)
-.filter(Boolean)
+const codes=[...new Set(
+channels.map(c=>c.country).filter(Boolean)
 )];
 
-countryCodes.sort((a,b)=>{
+codes.sort((a,b)=>{
 
-const nameA =
-countries[a]?.[1] || a;
+const A=countries[a]?.[1]||a;
+const B=countries[b]?.[1]||b;
 
-const nameB =
-countries[b]?.[1] || b;
-
-return nameA.localeCompare(
-nameB,
-"ar"
-);
+return A.localeCompare(B,"ar");
 
 });
 
-countryCodes.forEach(code=>{
+codes.forEach(code=>{
 
-const info =
-countries[code] ||
-["🌐",code];
+const info=countries[code]||["🌐",code];
 
-const count =
-channels.filter(
+const count=channels.filter(
 c=>c.country===code
 ).length;
 
-const card =
-document.createElement("button");
+const card=document.createElement("button");
 
 card.className="country";
 
 card.innerHTML=`
-
-<div class="flag">
-${info[0]}
-</div>
-
-<div class="countryName">
-${escapeHTML(info[1])}
-</div>
-
-<div class="countryCount">
-${count} قناة
-</div>
-
+<div class="flag">${info[0]}</div>
+<div class="countryName">${escapeHTML(info[1])}</div>
+<div class="countryCount">${count} قناة</div>
 `;
 
-card.onclick=()=>{
-showCountry(code);
-};
+card.onclick=()=>showCountry(code);
 
 box.appendChild(card);
 
@@ -948,157 +522,99 @@ box.appendChild(card);
 }
 
 
-/* SHOW COUNTRY */
+/* COUNTRY */
 
 function showCountry(code){
 
-filtered =
-channels.filter(
-c=>c.country===code
-);
-
+filtered=channels.filter(c=>c.country===code);
 shown=0;
 
-document.getElementById("countries")
-.style.display="none";
+document.getElementById("countries").style.display="none";
+document.querySelector(".hero").style.display="none";
+document.querySelector(".sectionTitle").style.display="none";
+document.getElementById("channelHeader").style.display="flex";
 
-document.querySelector(".hero")
-.style.display="none";
+const info=countries[code]||["🌐",code];
 
-document.querySelector(".sectionTitle")
-.style.display="none";
-
-document.getElementById("channelHeader")
-.style.display="flex";
-
-const info =
-countries[code] ||
-["🌐",code];
-
-document.getElementById("countryTitle")
-.textContent =
+document.getElementById("countryTitle").textContent=
 info[0]+" "+info[1];
 
-document.getElementById("channels")
-.innerHTML="";
+document.getElementById("channels").innerHTML="";
 
 renderChannels();
 
 }
 
 
-/* SHOW COUNTRIES */
+/* HOME */
 
 function showCountries(){
 
-document.getElementById("countries")
-.style.display="grid";
-
-document.querySelector(".hero")
-.style.display="block";
-
-document.querySelector(".sectionTitle")
-.style.display="block";
-
-document.getElementById("channelHeader")
-.style.display="none";
-
-document.getElementById("channels")
-.innerHTML="";
-
-document.getElementById("more")
-.style.display="none";
+document.getElementById("countries").style.display="grid";
+document.querySelector(".hero").style.display="block";
+document.querySelector(".sectionTitle").style.display="block";
+document.getElementById("channelHeader").style.display="none";
+document.getElementById("channels").innerHTML="";
+document.getElementById("more").style.display="none";
 
 }
 
 
-/* CHANNEL CARDS */
+/* CHANNELS */
 
 function renderChannels(){
 
-const box =
-document.getElementById("channels");
+const box=document.getElementById("channels");
 
-const end =
-Math.min(
+const end=Math.min(
 shown+BATCH_SIZE,
 filtered.length
 );
 
 for(let i=shown;i<end;i++){
 
-const channel =
-filtered[i];
-
-const card =
-document.createElement("div");
+const channel=filtered[i];
+const card=document.createElement("div");
 
 card.className="card";
 
-const info =
-countries[channel.country] ||
-["🌐",""];
+const info=countries[channel.country]||["🌐",""];
 
+let logoHTML="";
 
-/*
-الشعار الحقيقي
-وإذا لم يوجد أو فشل تحميله
-تظهر أيقونة HAMOUDA TV
-*/
-
-let logoHTML;
-
-if(channel.logo){
+if(channel.logo&&channel.logo.trim()!==""){
 
 logoHTML=`
-
 <img
+class="realChannelLogo"
 src="${escapeAttribute(channel.logo)}"
 loading="lazy"
-alt=""
+alt="${escapeAttribute(channel.name||"Channel")}"
 onerror="
 this.style.display='none';
-this.nextElementSibling.style.display='flex';
+this.parentElement.querySelector('.fallbackLogo').style.display='flex';
 ">
 
-<div
-class="fallbackLogo"
-style="display:none">
-
-<img
-src="Hamouda_TV_icon.png"
-loading="lazy"
-alt="HAMOUDA TV">
-
+<div class="fallbackLogo" style="display:none">
+<img src="Hamouda_TV_icon.png" loading="lazy" alt="HAMOUDA TV">
 </div>
-
 `;
 
 }else{
 
 logoHTML=`
-
 <div class="fallbackLogo">
-
-<img
-src="Hamouda_TV_icon.png"
-loading="lazy"
-alt="HAMOUDA TV">
-
+<img src="Hamouda_TV_icon.png" loading="lazy" alt="HAMOUDA TV">
 </div>
-
 `;
 
 }
-
 
 card.innerHTML=`
 
 <div class="cardLogo">
 
-<div class="cardFlag">
-${info[0]}
-</div>
+<div class="cardFlag">${info[0]}</div>
 
 ${logoHTML}
 
@@ -1115,19 +631,13 @@ ${escapeHTML(channel.name||"قناة")}
 </button>
 
 </div>
-
 `;
 
-card.querySelector(".watch")
-.onclick=()=>{
+card.querySelector(".watch").onclick=()=>{
 
-const realIndex =
-channels.indexOf(channel);
+const realIndex=channels.indexOf(channel);
 
-openChannel(
-channel,
-realIndex
-);
+openChannel(channel,realIndex);
 
 };
 
@@ -1137,131 +647,90 @@ box.appendChild(card);
 
 shown=end;
 
-document.getElementById("more")
-.style.display =
-shown<filtered.length
-? "block"
-: "none";
+document.getElementById("more").style.display=
+shown<filtered.length?"block":"none";
 
 }
 
 
 /* SEARCH */
 
-document.getElementById("search")
-.addEventListener(
+document.getElementById("search").addEventListener(
 "input",
 function(){
 
-const query =
-this.value.trim().toLowerCase();
+const query=this.value.trim().toLowerCase();
 
 if(!query){
-
 showCountries();
 return;
-
 }
 
-filtered =
-channels.filter(channel =>
-(channel.name||"")
-.toLowerCase()
-.includes(query)
+filtered=channels.filter(channel=>
+(channel.name||"").toLowerCase().includes(query)
 );
 
 shown=0;
 
-document.getElementById("countries")
-.style.display="none";
-
-document.querySelector(".hero")
-.style.display="none";
-
-document.querySelector(".sectionTitle")
-.style.display="none";
-
-document.getElementById("channelHeader")
-.style.display="flex";
-
-document.getElementById("countryTitle")
-.textContent="نتائج البحث";
-
-document.getElementById("channels")
-.innerHTML="";
+document.getElementById("countries").style.display="none";
+document.querySelector(".hero").style.display="none";
+document.querySelector(".sectionTitle").style.display="none";
+document.getElementById("channelHeader").style.display="flex";
+document.getElementById("countryTitle").textContent="نتائج البحث";
+document.getElementById("channels").innerHTML="";
 
 renderChannels();
 
 });
 
 
-/* OPEN CHANNEL */
+/* OPEN */
 
 function openChannel(channel,index){
 
 currentChannel=channel;
 currentIndex=index;
 
-const player =
-document.getElementById("player");
+document.getElementById("player").style.display="block";
 
-player.style.display="block";
+document.getElementById("nowName").textContent=
+channel.name||"القناة";
 
-document.getElementById("nowName")
-.textContent =
-channel.name || "القناة";
-
-const url =
-streams.get(channel.id);
+const url=streams.get(channel.id);
 
 if(url){
 startStream(url);
 }
 
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-/*
-إذا كان Landscape
-نظهر أزرار السابق والتالي
-*/
-
-showLandscapeControls();
+window.scrollTo({top:0,behavior:"smooth"});
 
 }
 
 
-/* PLAY STREAM */
+/* STREAM */
 
 function startStream(url){
 
-const video =
-document.getElementById("video");
+const video=document.getElementById("video");
 
 showLoading();
 
 if(hls){
-
 hls.destroy();
 hls=null;
-
 }
 
 video.pause();
 video.removeAttribute("src");
 video.load();
 
-
 if(
-window.Hls &&
-Hls.isSupported() &&
+window.Hls&&
+Hls.isSupported()&&
 /\.m3u8($|\?)/i.test(url)
 ){
 
-hls =
-new Hls({
+hls=new Hls({
 enableWorker:true,
 maxBufferLength:20,
 maxMaxBufferLength:40,
@@ -1274,22 +743,17 @@ hls.attachMedia(video);
 hls.on(
 Hls.Events.MANIFEST_PARSED,
 ()=>{
-
 hideLoading();
-
 video.play().catch(()=>{});
-
-});
+}
+);
 
 hls.on(
 Hls.Events.ERROR,
 (event,data)=>{
-
-if(data.fatal){
-hideLoading();
+if(data.fatal)hideLoading();
 }
-
-});
+);
 
 }else{
 
@@ -1307,85 +771,53 @@ video.play()
 
 /* NEXT */
 
-function nextChannel(){
+function nextChannel(event){
+
+if(event)event.stopPropagation();
 
 if(!channels.length)return;
 
-currentIndex =
-(currentIndex+1)
-%channels.length;
-
-const next =
-channels[currentIndex];
+currentIndex=
+(currentIndex+1)%channels.length;
 
 openChannel(
-next,
+channels[currentIndex],
 currentIndex
 );
+
+showLandscapeControls();
 
 }
 
 
 /* PREVIOUS */
 
-function previousChannel(){
+function previousChannel(event){
+
+if(event)event.stopPropagation();
 
 if(!channels.length)return;
 
-currentIndex =
-(currentIndex-1+channels.length)
-%channels.length;
-
-const previous =
-channels[currentIndex];
+currentIndex=
+(currentIndex-1+channels.length)%channels.length;
 
 openChannel(
-previous,
+channels[currentIndex],
 currentIndex
 );
 
-}
-
-
-/* BACK HOME */
-
-function backHome(){
-
-const video =
-document.getElementById("video");
-
-const mini =
-document.getElementById("miniVideo");
-
-const miniBox =
-document.getElementById("miniPlayer");
-
-try{
-
-if(video.src){
-
-mini.src =
-video.currentSrc ||
-video.src;
-
-mini.currentTime =
-video.currentTime;
-
-mini.play().catch(()=>{});
-
-document.getElementById("miniName")
-.textContent =
-currentChannel?.name ||
-"القناة";
-
-miniBox.style.display="block";
+showLandscapeControls();
 
 }
 
-}catch(e){}
 
-document.getElementById("player")
-.style.display="none";
+/* BACK */
+
+function backHome(event){
+
+if(event)event.stopPropagation();
+
+document.getElementById("player").style.display="none";
 
 showCountries();
 
@@ -1397,125 +829,119 @@ behavior:"smooth"
 }
 
 
-/* CLOSE MINI */
+/* MINI */
 
 function closeMini(){
 
-const mini =
-document.getElementById("miniVideo");
+const mini=document.getElementById("miniVideo");
 
 mini.pause();
 mini.removeAttribute("src");
 mini.load();
 
-document.getElementById("miniPlayer")
-.style.display="none";
+document.getElementById("miniPlayer").style.display="none";
 
 }
 
 
 /* LANDSCAPE */
 
-function landscapeMode(){
+function landscapeMode(event){
 
-const player =
-document.getElementById("player");
+if(event)event.stopPropagation();
+
+const player=document.getElementById("player");
 
 if(player.requestFullscreen){
 
-player.requestFullscreen()
-.then(()=>{
+player.requestFullscreen().then(()=>{
 
 if(
-screen.orientation &&
+screen.orientation&&
 screen.orientation.lock
 ){
 
-screen.orientation
-.lock("landscape")
-.catch(()=>{});
+screen.orientation.lock("landscape").catch(()=>{});
 
 }
 
-})
-.catch(()=>{});
+}).catch(()=>{});
 
 }
+
+showLandscapeControls();
 
 }
 
 
 /* FULLSCREEN */
 
-function fullScreen(){
+function fullScreen(event){
 
-const box =
-document.querySelector(".playerBox");
+if(event)event.stopPropagation();
+
+const box=document.querySelector(".playerBox");
 
 if(document.fullscreenElement){
 
 document.exitFullscreen();
 
-}else{
+}else if(box.requestFullscreen){
 
-if(box.requestFullscreen){
 box.requestFullscreen();
-}
 
 }
 
-}
-
-
-/* LANDSCAPE CONTROLS */
-
-const playerElement =
-document.getElementById("player");
-
-
-function showLandscapeControls(){
-
-const landscape =
-window.matchMedia(
-"(orientation: landscape)"
-).matches;
-
-if(!landscape)return;
-
-playerElement.classList.add(
-"showControls"
-);
-
-clearTimeout(controlsTimer);
-
-controlsTimer =
-setTimeout(()=>{
-
-playerElement.classList.remove(
-"showControls"
-);
-
-},3000);
+showLandscapeControls();
 
 }
 
 
 /*
-لمسة واحدة على الفيديو
-تظهر الأزرار
+===========================
+LANDSCAPE BUTTON SYSTEM
+===========================
 */
+
+const playerElement=
+document.getElementById("player");
+
+
+function showLandscapeControls(){
+
+const isLandscape=
+window.matchMedia(
+"(max-width:900px) and (orientation:landscape)"
+).matches;
+
+if(!isLandscape)return;
+
+playerElement.classList.add("showControls");
+
+clearTimeout(controlsTimer);
+
+controlsTimer=setTimeout(()=>{
+
+playerElement.classList.remove("showControls");
+
+},5000);
+
+}
+
+
+/* لمس الفيديو */
 
 playerElement.addEventListener(
 "touchstart",
 function(event){
 
 /*
-إذا لمس زرًا، لا نعيد المؤقت
+إذا ضغط على زر:
+لا نخفي الأزرار
 */
 
-if(
-event.target.closest(".control")
-){
+if(event.target.closest(".control")){
+showLandscapeControls();
 return;
 }
 
@@ -1526,17 +952,13 @@ showLandscapeControls();
 );
 
 
-/*
-ضغط بالماوس
-*/
+/* ضغط الماوس */
 
 playerElement.addEventListener(
 "click",
 function(event){
 
-if(
-event.target.closest(".control")
-){
+if(event.target.closest(".control")){
 return;
 }
 
@@ -1546,30 +968,52 @@ showLandscapeControls();
 );
 
 
+/* عند تغيير الوضع */
+
+window.addEventListener(
+"orientationchange",
+function(){
+
+setTimeout(()=>{
+
+const landscape=
+window.matchMedia(
+"(max-width:900px) and (orientation:landscape)"
+).matches;
+
+if(landscape){
+showLandscapeControls();
+}else{
+playerElement.classList.remove("showControls");
+}
+
+},300);
+
+}
+);
+
+
 /* LOADING */
 
 function showLoading(){
 
-document.getElementById("loading")
-.style.display="flex";
+document.getElementById("loading").style.display="flex";
 
 }
 
 function hideLoading(){
 
-document.getElementById("loading")
-.style.display="none";
+document.getElementById("loading").style.display="none";
 
 }
 
 
 /* MORE */
 
-document.getElementById("more")
-.onclick=renderChannels;
+document.getElementById("more").onclick=renderChannels;
 
 
-/* SECURITY */
+/* ESCAPE */
 
 function escapeHTML(text){
 
