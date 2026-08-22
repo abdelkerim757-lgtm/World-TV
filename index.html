@@ -8,27 +8,20 @@
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <style>
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent
-}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 
 html,body{
   margin:0;
-  background:#080a0f;
+  background:#07090d;
   color:#fff;
   font-family:Arial,Tahoma,sans-serif
 }
 
-button,input{
-  font:inherit
-}
+body{min-height:100vh}
 
-button{
-  cursor:pointer
-}
+button,input{font:inherit}
 
-/* HEADER */
+button{cursor:pointer}
 
 header{
   height:64px;
@@ -36,8 +29,8 @@ header{
   top:0;
   z-index:50;
   background:#0b0e13ee;
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid #222731
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid #252a33
 }
 
 .header{
@@ -47,7 +40,7 @@ header{
   padding:0 16px;
   display:flex;
   align-items:center;
-  gap:16px
+  gap:15px
 }
 
 .logo{
@@ -56,23 +49,21 @@ header{
   white-space:nowrap
 }
 
-.logo span{
-  color:#e50914
-}
+.logo span{color:#e50914}
 
 .search{
   margin-right:auto;
-  width:min(340px,48vw)
+  width:min(340px,50vw)
 }
 
 .search input{
   width:100%;
+  padding:10px 16px;
+  border-radius:25px;
   border:1px solid #303640;
   background:#171a20;
   color:#fff;
-  outline:none;
-  padding:10px 16px;
-  border-radius:24px
+  outline:none
 }
 
 /* HOME */
@@ -80,43 +71,45 @@ header{
 main{
   max-width:1400px;
   margin:auto;
-  padding:22px 15px 60px
+  padding:20px 15px 60px
 }
 
 .hero{
-  padding:28px 5px 20px
+  padding:25px 4px 20px
 }
 
 .hero h1{
   margin:0;
-  font-size:32px
+  font-size:31px
 }
 
 .hero p{
-  color:#858d99;
-  margin:9px 0 0
+  margin:9px 0 0;
+  color:#858d99
 }
 
-.title{
+.sectionTitle{
   font-size:21px;
   font-weight:bold;
-  margin:15px 0
+  margin:10px 0 15px
 }
+
+/* COUNTRIES */
 
 .countries{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(145px,1fr));
-  gap:12px
+  gap:13px
 }
 
 .country{
-  min-height:120px;
-  padding:17px 8px;
+  min-height:135px;
   border:1px solid #292e37;
-  border-radius:13px;
-  background:linear-gradient(145deg,#151920,#0e1116);
+  border-radius:14px;
+  background:linear-gradient(145deg,#171b22,#0e1116);
   color:#fff;
-  transition:.18s;
+  padding:14px 8px;
+  transition:.18s
 }
 
 .country:hover{
@@ -124,22 +117,24 @@ main{
   border-color:#e50914
 }
 
-.country .flag{
-  font-size:39px
+.flag{
+  font-size:48px;
+  line-height:1.1
 }
 
-.country .name{
-  margin-top:9px;
+.countryName{
+  margin-top:10px;
+  font-size:16px;
   font-weight:bold
 }
 
-.country .count{
-  margin-top:5px;
-  color:#737b87;
+.countryCount{
+  margin-top:6px;
+  color:#777f8b;
   font-size:12px
 }
 
-/* CHANNEL LIST */
+/* CHANNELS */
 
 .channelHeader{
   display:none;
@@ -153,48 +148,60 @@ main{
   background:#171a20;
   color:#fff;
   padding:9px 15px;
-  border-radius:8px
+  border-radius:9px
 }
 
 .channels{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
-  gap:13px
+  gap:14px
 }
 
 .card{
-  background:#13161c;
-  border:1px solid #252a33;
-  border-radius:12px;
-  overflow:hidden
+  overflow:hidden;
+  background:#12151b;
+  border:1px solid #272c35;
+  border-radius:13px;
+  transition:.18s
+}
+
+.card:hover{
+  transform:translateY(-3px);
+  border-color:#444b57
 }
 
 .cardLogo{
-  height:115px;
-  background:#090b0f;
+  height:125px;
   position:relative;
+  background:#080a0e;
   display:flex;
-  align-items:center;
-  justify-content:center
+  justify-content:center;
+  align-items:center
 }
 
 .cardLogo img{
   width:100%;
   height:100%;
   object-fit:contain;
-  padding:12px
+  padding:13px
+}
+
+.logoFallback{
+  font-size:40px;
+  font-weight:900;
+  color:#e50914
 }
 
 .cardFlag{
   position:absolute;
   right:8px;
   top:7px;
-  font-size:22px
+  z-index:2;
+  font-size:23px;
+  filter:drop-shadow(0 2px 3px #000)
 }
 
-.cardBody{
-  padding:11px
-}
+.cardBody{padding:11px}
 
 .channelName{
   font-weight:bold;
@@ -216,40 +223,46 @@ main{
 .more{
   display:block;
   margin:25px auto;
-  border:1px solid #303640;
-  background:#171a20;
-  color:#fff;
   padding:11px 25px;
-  border-radius:24px
+  border:1px solid #303640;
+  border-radius:24px;
+  background:#171a20;
+  color:#fff
+}
+
+.status{
+  text-align:center;
+  color:#858d99;
+  padding:30px
 }
 
 /* PLAYER */
 
 #player{
   display:none;
-  background:#000
+  background:#000;
+  position:relative
 }
 
 .playerBox{
-  width:100%;
   max-width:1400px;
   margin:auto;
   background:#000;
   position:relative
 }
 
-video{
+video.mainVideo{
+  display:block;
   width:100%;
   height:auto;
-  max-height:78vh;
   min-height:230px;
-  display:block;
+  max-height:78vh;
   background:#000;
   object-fit:contain
 }
 
 .playerInfo{
-  padding:11px 14px;
+  padding:10px 14px;
   background:#0d1015;
   display:flex;
   align-items:center;
@@ -258,8 +271,8 @@ video{
 
 .live{
   background:#e50914;
-  border-radius:5px;
   padding:4px 7px;
+  border-radius:5px;
   font-size:10px
 }
 
@@ -270,75 +283,29 @@ video{
 /* CONTROLS */
 
 .controls{
-  max-width:1400px;
-  margin:auto;
-  background:#0d1015;
   display:flex;
   justify-content:center;
+  align-items:center;
   gap:8px;
-  padding:9px
+  padding:9px;
+  background:#0d1015
 }
 
 .control{
-  width:44px;
-  height:40px;
+  width:45px;
+  height:41px;
   border:1px solid #303640;
-  border-radius:8px;
+  border-radius:9px;
   background:#181c22;
   color:#fff;
   display:flex;
   align-items:center;
-  justify-content:center
+  justify-content:center;
+  font-size:18px
 }
 
 .control:hover{
   background:#e50914
-}
-
-/* MINI PLAYER */
-
-.miniPlayer{
-  display:none;
-  position:fixed;
-  z-index:100;
-  left:12px;
-  bottom:12px;
-  width:280px;
-  background:#080a0e;
-  border:1px solid #303640;
-  border-radius:12px;
-  overflow:hidden;
-  box-shadow:0 12px 40px #000b
-}
-
-.miniPlayer video{
-  width:100%;
-  height:155px;
-  min-height:0;
-  object-fit:contain
-}
-
-.miniBar{
-  height:38px;
-  padding:0 8px;
-  display:flex;
-  align-items:center;
-  gap:8px
-}
-
-.miniBar span{
-  font-size:12px;
-  flex:1;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis
-}
-
-.miniClose{
-  border:0;
-  background:none;
-  color:#fff;
-  font-size:18px
 }
 
 /* LOADING */
@@ -346,11 +313,11 @@ video{
 .loading{
   position:absolute;
   inset:0;
+  z-index:5;
   display:none;
   align-items:center;
   justify-content:center;
-  background:#0008;
-  z-index:5
+  background:#0008
 }
 
 .spinner{
@@ -366,21 +333,61 @@ video{
   to{transform:rotate(360deg)}
 }
 
-/* LANDSCAPE */
+/* MINI PLAYER */
 
-.landscape{
-  display:none
+.miniPlayer{
+  display:none;
+  position:fixed;
+  left:12px;
+  bottom:12px;
+  width:280px;
+  z-index:100;
+  overflow:hidden;
+  border:1px solid #303640;
+  border-radius:12px;
+  background:#080a0e;
+  box-shadow:0 12px 40px #000b
 }
+
+.miniPlayer video{
+  display:block;
+  width:100%;
+  height:155px;
+  min-height:0;
+  background:#000;
+  object-fit:contain
+}
+
+.miniBar{
+  height:39px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:0 8px
+}
+
+.miniBar span{
+  flex:1;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  font-size:12px
+}
+
+.miniClose{
+  border:0;
+  background:none;
+  color:#fff;
+  font-size:20px
+}
+
+/* MOBILE */
 
 @media(max-width:900px){
 
-  .landscape{
-    display:flex
-  }
+  .landscapeButton{display:flex}
 
-  .hero h1{
-    font-size:26px
-  }
+  .hero h1{font-size:26px}
 
   .countries{
     grid-template-columns:repeat(3,1fr);
@@ -388,39 +395,34 @@ video{
   }
 
   .country{
-    min-height:105px
+    min-height:120px
   }
 
-  .country .flag{
-    font-size:31px
-  }
+  .flag{font-size:38px}
+
+  .countryName{font-size:14px}
 
   .channels{
     grid-template-columns:repeat(2,1fr);
     gap:9px
   }
 
-  .cardLogo{
-    height:90px
-  }
+  .cardLogo{height:95px}
 
+  .search{width:45vw}
 }
 
-/*
-Landscape:
-الأزرار مخفية، وتظهر عند لمس الشاشة
-*/
+/* LANDSCAPE */
 
 @media(max-width:900px) and (orientation:landscape){
 
-  header{
-    display:none
-  }
+  header{display:none}
 
   #player{
     position:fixed;
     inset:0;
     z-index:200;
+    width:100vw;
     height:100vh;
     background:#000
   }
@@ -431,34 +433,35 @@ Landscape:
     max-width:none
   }
 
-  video{
+  video.mainVideo{
     width:100%;
     height:100%;
-    max-height:none;
-    min-height:0
+    min-height:0;
+    max-height:none
   }
 
   .playerInfo{
     position:absolute;
     top:0;
-    left:0;
     right:0;
+    left:0;
     z-index:10;
     background:linear-gradient(#000c,transparent);
-    padding:14px
+    padding:13px;
+    pointer-events:none
   }
 
   .controls{
     position:absolute;
     bottom:0;
-    left:0;
     right:0;
+    left:0;
     z-index:20;
-    background:linear-gradient(transparent,#000d);
-    padding:22px 10px 12px;
+    padding:25px 10px 12px;
+    background:linear-gradient(transparent,#000e);
     opacity:0;
     pointer-events:none;
-    transition:.25s
+    transition:opacity .2s
   }
 
   #player.showControls .controls{
@@ -466,36 +469,19 @@ Landscape:
     pointer-events:auto
   }
 
-  #player.showControls .playerInfo{
-    opacity:1
-  }
-
   .control{
-    width:45px;
-    height:42px;
+    width:48px;
+    height:43px;
     background:#151820dd
   }
 
-  .miniPlayer{
-    display:none!important
-  }
-
+  .miniPlayer{display:none!important}
 }
 
 /* DESKTOP */
 
 @media(min-width:901px){
-
-  .miniPlayer{
-    display:none!important
-  }
-
-}
-
-.status{
-  text-align:center;
-  color:#858d99;
-  padding:30px
+  .landscapeButton{display:none}
 }
 </style>
 </head>
@@ -510,7 +496,7 @@ Landscape:
     </div>
 
     <div class="search">
-      <input id="search" placeholder="ابحث عن قناة">
+      <input id="search" type="search" placeholder="ابحث عن قناة">
     </div>
 
   </div>
@@ -525,12 +511,13 @@ Landscape:
 
     <video
       id="video"
+      class="mainVideo"
       controls
       playsinline
       preload="none">
     </video>
 
-    <div class="loading" id="loading">
+    <div id="loading" class="loading">
       <div class="spinner"></div>
     </div>
 
@@ -541,27 +528,31 @@ Landscape:
 
     <div class="controls">
 
+      <!-- السابق -->
       <button
         class="control"
         title="السابق"
         onclick="previousChannel()">
-        ◀
+        ‹
       </button>
 
+      <!-- التالي -->
       <button
         class="control"
         title="التالي"
         onclick="nextChannel()">
-        ▶
+        ›
       </button>
 
+      <!-- Landscape -->
       <button
-        class="control landscape"
+        class="control landscapeButton"
         title="Landscape"
         onclick="landscapeMode()">
         ⛶
       </button>
 
+      <!-- Fullscreen -->
       <button
         class="control"
         title="ملء الشاشة"
@@ -569,6 +560,7 @@ Landscape:
         ⛶
       </button>
 
+      <!-- الرئيسية -->
       <button
         class="control"
         title="القائمة الرئيسية"
@@ -594,7 +586,6 @@ Landscape:
   </video>
 
   <div class="miniBar">
-
     <span id="miniName">القناة</span>
 
     <button
@@ -602,7 +593,6 @@ Landscape:
       onclick="closeMini()">
       ×
     </button>
-
   </div>
 
 </div>
@@ -614,16 +604,14 @@ Landscape:
 
   <div class="hero">
     <h1>عالم التلفزيون بين يديك</h1>
-    <p>شاهد القنوات العالمية حسب البلد</p>
+    <p>اختر بلدًا لمشاهدة القنوات المتوفرة</p>
   </div>
 
-  <div class="title">البلدان</div>
+  <div class="sectionTitle">البلدان</div>
 
   <div id="countries" class="countries"></div>
 
-  <div
-    id="channelHeader"
-    class="channelHeader">
+  <div id="channelHeader" class="channelHeader">
 
     <button
       class="backCountries"
@@ -631,25 +619,17 @@ Landscape:
       رجوع للبلدان
     </button>
 
-    <div id="countryTitle"></div>
+    <strong id="countryTitle"></strong>
 
   </div>
 
-  <div
-    id="channels"
-    class="channels">
-  </div>
+  <div id="channels" class="channels"></div>
 
-  <div
-    id="status"
-    class="status">
+  <div id="status" class="status">
     جاري تحميل القنوات...
   </div>
 
-  <button
-    id="more"
-    class="more"
-    style="display:none">
+  <button id="more" class="more" style="display:none">
     عرض 50 قناة أخرى
   </button>
 
@@ -659,7 +639,7 @@ Landscape:
 <script>
 
 /* =========================
-   DATA
+   SETTINGS
 ========================= */
 
 const CHANNELS_URL =
@@ -668,7 +648,12 @@ const CHANNELS_URL =
 const STREAMS_URL =
 "https://iptv-org.github.io/api/streams.json";
 
-const BATCH = 50;
+const BATCH_SIZE = 50;
+
+
+/* =========================
+   VARIABLES
+========================= */
 
 let channels = [];
 let streams = new Map();
@@ -684,7 +669,7 @@ let controlsTimer = null;
 
 
 /* =========================
-   COUNTRIES
+   FLAGS
 ========================= */
 
 const countries = {
@@ -755,65 +740,80 @@ NG:["🇳🇬","نيجيريا"]
 
 
 /* =========================
-   LOAD
+   LOAD DATA
 ========================= */
 
 async function loadData(){
 
   try{
 
-    const [a,b] = await Promise.all([
+    const responses = await Promise.all([
       fetch(CHANNELS_URL),
       fetch(STREAMS_URL)
     ]);
 
-    const channelData = await a.json();
-    const streamData = await b.json();
+    const channelData =
+      await responses[0].json();
 
-    streamData.forEach(s=>{
+    const streamData =
+      await responses[1].json();
+
+    /*
+      حفظ أول stream لكل قناة
+    */
+
+    streamData.forEach(stream=>{
 
       if(
-        s.channel &&
-        s.url &&
-        !streams.has(s.channel)
+        stream.channel &&
+        stream.url &&
+        !streams.has(stream.channel)
       ){
 
-        streams.set(s.channel,s.url);
+        streams.set(
+          stream.channel,
+          stream.url
+        );
 
       }
 
     });
 
+    /*
+      فقط القنوات التي عندها بث
+    */
+
     channels =
-      channelData.filter(c =>
-        streams.has(c.id)
+      channelData.filter(channel =>
+        streams.has(channel.id)
       );
 
     channels.sort((a,b)=>
-      (a.name||"").localeCompare(b.name||"")
+      (a.name||"").localeCompare(
+        b.name||"",
+        "ar"
+      )
     );
 
     buildCountries();
 
-    document.getElementById("status").style.display="none";
-
-    /*
-      أول قناة
-      لكن لا نفتح المشغل فوق القائمة مباشرة.
-      نجهز أول قناة فقط.
-    */
+    document.getElementById("status")
+      .style.display="none";
 
     if(channels.length){
+
       currentChannel=channels[0];
       currentIndex=0;
+
     }
 
-  }catch(e){
+  }catch(error){
 
-    console.error(e);
+    console.error(error);
 
-    document.getElementById("status").textContent =
-      "تعذر تحميل القنوات. تحقق من الاتصال بالإنترنت.";
+    document.getElementById("status")
+      .textContent=
+      "تعذر تحميل القنوات. تحقق من اتصال الإنترنت.";
 
   }
 
@@ -831,70 +831,81 @@ function buildCountries(){
 
   box.innerHTML="";
 
-  const found = new Set();
+  const countryCodes =
+    [...new Set(
+      channels
+        .map(c=>c.country)
+        .filter(Boolean)
+    )];
 
-  channels.forEach(c=>{
+  countryCodes.sort((a,b)=>{
 
-    if(c.country){
-      found.add(c.country);
-    }
+    const nameA =
+      countries[a]?.[1] || a;
+
+    const nameB =
+      countries[b]?.[1] || b;
+
+    return nameA.localeCompare(
+      nameB,
+      "ar"
+    );
 
   });
 
-  [...found]
-    .sort((a,b)=>{
+  countryCodes.forEach(code=>{
 
-      const aa=countries[a]?.[1]||a;
-      const bb=countries[b]?.[1]||b;
+    const info =
+      countries[code] ||
+      ["🌐",code];
 
-      return aa.localeCompare(bb);
+    const count =
+      channels.filter(
+        c=>c.country===code
+      ).length;
 
-    })
-    .forEach(code=>{
+    const card =
+      document.createElement("button");
 
-      const info=countries[code];
+    card.className="country";
 
-      const count =
-        channels.filter(c=>c.country===code).length;
+    card.innerHTML=`
 
-      const card =
-        document.createElement("button");
+      <div class="flag">
+        ${info[0]}
+      </div>
 
-      card.className="country";
+      <div class="countryName">
+        ${escapeHTML(info[1])}
+      </div>
 
-      card.innerHTML=`
+      <div class="countryCount">
+        ${count} قناة
+      </div>
 
-        <div class="flag">
-          ${info ? info[0] : "🌐"}
-        </div>
+    `;
 
-        <div class="name">
-          ${info ? info[1] : code}
-        </div>
+    card.onclick=()=>{
+      showCountry(code);
+    };
 
-        <div class="count">
-          ${count} قناة
-        </div>
+    box.appendChild(card);
 
-      `;
-
-      card.onclick=()=>showCountry(code);
-
-      box.appendChild(card);
-
-    });
+  });
 
 }
 
 
 /* =========================
-   COUNTRY
+   SHOW COUNTRY
 ========================= */
 
 function showCountry(code){
 
   filtered =
-    channels.filter(c=>c.country===code);
+    channels.filter(
+      c=>c.country===code
+    );
 
   shown=0;
 
@@ -904,19 +915,19 @@ function showCountry(code){
   document.querySelector(".hero")
     .style.display="none";
 
-  document.querySelector(".title")
+  document.querySelector(".sectionTitle")
     .style.display="none";
 
   document.getElementById("channelHeader")
     .style.display="flex";
 
-  const info=countries[code];
+  const info =
+    countries[code] ||
+    ["🌐",code];
 
   document.getElementById("countryTitle")
     .textContent =
-      info
-      ? info[0]+" "+info[1]
-      : code;
+      info[0]+" "+info[1];
 
   document.getElementById("channels")
     .innerHTML="";
@@ -938,7 +949,7 @@ function showCountries(){
   document.querySelector(".hero")
     .style.display="block";
 
-  document.querySelector(".title")
+  document.querySelector(".sectionTitle")
     .style.display="block";
 
   document.getElementById("channelHeader")
@@ -954,7 +965,7 @@ function showCountries(){
 
 
 /* =========================
-   CHANNELS
+   CHANNEL CARDS
 ========================= */
 
 function renderChannels(){
@@ -963,41 +974,74 @@ function renderChannels(){
     document.getElementById("channels");
 
   const end =
-    Math.min(shown+BATCH,filtered.length);
+    Math.min(
+      shown+BATCH_SIZE,
+      filtered.length
+    );
 
   for(let i=shown;i<end;i++){
 
-    const c=filtered[i];
+    const channel =
+      filtered[i];
 
     const card =
       document.createElement("div");
 
     card.className="card";
 
-    const info=countries[c.country];
+    const info =
+      countries[channel.country] ||
+      ["🌐",""];
 
-    const logo =
-      c.logo
-      ? `<img src="${c.logo}" loading="lazy"
-           onerror="this.style.display='none'">`
-      : `<span style="font-size:40px">TV</span>`;
+    /*
+      استعمال الشعار الحقيقي الموجود
+      في بيانات القناة
+    */
+
+    let logoHTML;
+
+    if(channel.logo){
+
+      logoHTML=`
+        <img
+          src="${escapeAttribute(channel.logo)}"
+          loading="lazy"
+          alt=""
+          onerror="this.style.display='none';
+          this.nextElementSibling.style.display='block'">
+        <div
+          class="logoFallback"
+          style="display:none">
+          TV
+        </div>
+      `;
+
+    }else{
+
+      logoHTML=`
+        <div class="logoFallback">
+          TV
+        </div>
+      `;
+
+    }
 
     card.innerHTML=`
 
       <div class="cardLogo">
 
         <div class="cardFlag">
-          ${info ? info[0] : "🌐"}
+          ${info[0]}
         </div>
 
-        ${logo}
+        ${logoHTML}
 
       </div>
 
       <div class="cardBody">
 
         <div class="channelName">
-          ${c.name || "قناة"}
+          ${escapeHTML(channel.name||"قناة")}
         </div>
 
         <button class="watch">
@@ -1011,9 +1055,13 @@ function renderChannels(){
     card.querySelector(".watch")
       .onclick=()=>{
 
-        const index=channels.indexOf(c);
+        const realIndex =
+          channels.indexOf(channel);
 
-        openChannel(c,index);
+        openChannel(
+          channel,
+          realIndex
+        );
 
       };
 
@@ -1039,9 +1087,10 @@ function renderChannels(){
 document.getElementById("search")
 .addEventListener("input",function(){
 
-  const q=this.value.trim().toLowerCase();
+  const query =
+    this.value.trim().toLowerCase();
 
-  if(!q){
+  if(!query){
 
     showCountries();
     return;
@@ -1049,8 +1098,10 @@ document.getElementById("search")
   }
 
   filtered =
-    channels.filter(c=>
-      (c.name||"").toLowerCase().includes(q)
+    channels.filter(channel =>
+      (channel.name||"")
+      .toLowerCase()
+      .includes(query)
     );
 
   shown=0;
@@ -1061,7 +1112,7 @@ document.getElementById("search")
   document.querySelector(".hero")
     .style.display="none";
 
-  document.querySelector(".title")
+  document.querySelector(".sectionTitle")
     .style.display="none";
 
   document.getElementById("channelHeader")
@@ -1087,15 +1138,21 @@ function openChannel(channel,index){
   currentChannel=channel;
   currentIndex=index;
 
-  document.getElementById("player")
-    .style.display="block";
+  const player =
+    document.getElementById("player");
+
+  player.style.display="block";
 
   document.getElementById("nowName")
-    .textContent=channel.name||"القناة";
+    .textContent =
+      channel.name || "القناة";
 
-  startStream(
-    streams.get(channel.id)
-  );
+  const url =
+    streams.get(channel.id);
+
+  if(url){
+    startStream(url);
+  }
 
   window.scrollTo({
     top:0,
@@ -1106,7 +1163,7 @@ function openChannel(channel,index){
 
 
 /* =========================
-   STREAM
+   PLAY STREAM
 ========================= */
 
 function startStream(url){
@@ -1127,23 +1184,23 @@ function startStream(url){
   video.removeAttribute("src");
   video.load();
 
+  /*
+    HLS
+  */
+
   if(
     window.Hls &&
     Hls.isSupported() &&
     /\.m3u8($|\?)/i.test(url)
   ){
 
-    hls=new Hls({
-
-      enableWorker:true,
-
-      maxBufferLength:20,
-
-      maxMaxBufferLength:40,
-
-      backBufferLength:20
-
-    });
+    hls =
+      new Hls({
+        enableWorker:true,
+        maxBufferLength:20,
+        maxMaxBufferLength:40,
+        backBufferLength:20
+      });
 
     hls.loadSource(url);
     hls.attachMedia(video);
@@ -1164,9 +1221,7 @@ function startStream(url){
       (event,data)=>{
 
         if(data.fatal){
-
           hideLoading();
-
         }
 
       }
@@ -1175,7 +1230,6 @@ function startStream(url){
   }else{
 
     video.src=url;
-
     video.load();
 
     video.play()
@@ -1188,34 +1242,53 @@ function startStream(url){
 
 
 /* =========================
-   NEXT / PREVIOUS
+   NEXT
 ========================= */
 
 function nextChannel(){
 
   if(!channels.length)return;
 
+  /*
+    دائري
+  */
+
   currentIndex =
-    (currentIndex+1)%channels.length;
+    (currentIndex+1)
+    %channels.length;
+
+  const next =
+    channels[currentIndex];
 
   openChannel(
-    channels[currentIndex],
+    next,
     currentIndex
   );
 
 }
 
 
+/* =========================
+   PREVIOUS
+========================= */
+
 function previousChannel(){
 
   if(!channels.length)return;
+
+  /*
+    دائري
+  */
 
   currentIndex =
     (currentIndex-1+channels.length)
     %channels.length;
 
+  const previous =
+    channels[currentIndex];
+
   openChannel(
-    channels[currentIndex],
+    previous,
     currentIndex
   );
 
@@ -1228,12 +1301,6 @@ function previousChannel(){
 
 function backHome(){
 
-  /*
-    الفيديو يبقى شغال.
-    نخفي المشغل الكبير ونضع
-    نسخة مصغرة.
-  */
-
   const video =
     document.getElementById("video");
 
@@ -1243,18 +1310,39 @@ function backHome(){
   const miniBox =
     document.getElementById("miniPlayer");
 
+  /*
+    محاولة استمرار المشاهدة
+    في المشغل المصغر
+  */
+
   try{
 
-    mini.src=video.currentSrc||video.src;
-    mini.currentTime=video.currentTime;
-    mini.play().catch(()=>{});
+    if(video.src){
+
+      mini.src =
+        video.currentSrc ||
+        video.src;
+
+      mini.currentTime =
+        video.currentTime;
+
+      mini.play().catch(()=>{});
+
+      document.getElementById("miniName")
+        .textContent =
+          currentChannel?.name ||
+          "القناة";
+
+      miniBox.style.display="block";
+
+    }
 
   }catch(e){}
 
-  miniBox.style.display="block";
-
   document.getElementById("player")
     .style.display="none";
+
+  showCountries();
 
   window.scrollTo({
     top:0,
@@ -1264,12 +1352,18 @@ function backHome(){
 }
 
 
+/* =========================
+   CLOSE MINI
+========================= */
+
 function closeMini(){
 
   const mini =
     document.getElementById("miniVideo");
 
   mini.pause();
+  mini.removeAttribute("src");
+  mini.load();
 
   document.getElementById("miniPlayer")
     .style.display="none";
@@ -1291,8 +1385,10 @@ function landscapeMode(){
     player.requestFullscreen()
       .then(()=>{
 
-        if(screen.orientation &&
-           screen.orientation.lock){
+        if(
+          screen.orientation &&
+          screen.orientation.lock
+        ){
 
           screen.orientation
             .lock("landscape")
@@ -1314,7 +1410,7 @@ function landscapeMode(){
 
 function fullScreen(){
 
-  const player =
+  const box =
     document.querySelector(".playerBox");
 
   if(document.fullscreenElement){
@@ -1323,7 +1419,9 @@ function fullScreen(){
 
   }else{
 
-    player.requestFullscreen?.();
+    if(box.requestFullscreen){
+      box.requestFullscreen();
+    }
 
   }
 
@@ -1331,37 +1429,83 @@ function fullScreen(){
 
 
 /* =========================
-   LANDSCAPE TOUCH CONTROLS
+   LANDSCAPE CONTROLS
 ========================= */
 
-document.getElementById("player")
-.addEventListener("click",function(e){
+const playerElement =
+  document.getElementById("player");
 
-  /*
-    لا نفتح الأدوات إذا ضغط المستخدم
-    على أزرار التحكم نفسها.
-  */
+playerElement.addEventListener(
+  "click",
+  function(event){
 
-  if(e.target.closest(".control"))return;
+    /*
+      إذا ضغط على زر تحكم،
+      لا نخفي الأدوات.
+    */
 
-  if(
-    !window.matchMedia(
-      "(orientation: landscape)"
-    ).matches
-  )return;
+    if(
+      event.target.closest(".control")
+    ){
+      return;
+    }
 
-  this.classList.add("showControls");
+    const landscape =
+      window.matchMedia(
+        "(orientation: landscape)"
+      ).matches;
 
-  clearTimeout(controlsTimer);
+    if(!landscape)return;
 
-  controlsTimer =
-    setTimeout(()=>{
+    this.classList.add("showControls");
 
-      this.classList.remove("showControls");
+    clearTimeout(controlsTimer);
 
-    },3000);
+    controlsTimer =
+      setTimeout(()=>{
 
-});
+        this.classList.remove(
+          "showControls"
+        );
+
+      },3000);
+
+  }
+);
+
+
+/*
+  لمس الشاشة في Landscape
+  يظهر الأدوات أيضًا.
+*/
+
+playerElement.addEventListener(
+  "touchstart",
+  function(){
+
+    const landscape =
+      window.matchMedia(
+        "(orientation: landscape)"
+      ).matches;
+
+    if(!landscape)return;
+
+    this.classList.add("showControls");
+
+    clearTimeout(controlsTimer);
+
+    controlsTimer =
+      setTimeout(()=>{
+
+        this.classList.remove(
+          "showControls"
+        );
+
+      },3000);
+
+  },
+  {passive:true}
+);
 
 
 /* =========================
@@ -1388,7 +1532,31 @@ function hideLoading(){
 ========================= */
 
 document.getElementById("more")
-  .onclick=renderChannels;
+.onclick=renderChannels;
+
+
+/* =========================
+   SECURITY / TEXT
+========================= */
+
+function escapeHTML(text){
+
+  return String(text)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+function escapeAttribute(text){
+
+  return String(text)
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
 
 
 /* =========================
@@ -1400,4 +1568,4 @@ loadData();
 </script>
 
 </body>
-   </html>
+  </html>
