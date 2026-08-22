@@ -2,386 +2,151 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-
-<title>Hamouda TV 📺</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Hamouda TV Pro</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
-
-html,body{
-  margin:0;
-  padding:0;
-  background:#08090d;
-  color:#fff;
-  font-family:Arial,Tahoma,sans-serif;
-}
-
-body{
-  min-height:100vh;
-}
-
-/* HEADER */
+*{box-sizing:border-box}
+html,body{margin:0;background:#080a0f;color:#fff;font-family:Arial,Tahoma,sans-serif}
+body{min-height:100vh}
 
 header{
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:rgba(8,9,13,.94);
-  backdrop-filter:blur(15px);
-  border-bottom:1px solid #252833;
+position:sticky;top:0;z-index:100;
+background:rgba(8,10,15,.96);
+backdrop-filter:blur(14px);
+border-bottom:1px solid #252a34
 }
 
 .nav{
-  max-width:1400px;
-  margin:auto;
-  height:65px;
-  display:flex;
-  align-items:center;
-  gap:25px;
-  padding:0 20px;
+max-width:1450px;margin:auto;min-height:64px;
+display:flex;align-items:center;gap:16px;padding:10px 18px
 }
 
-.brand{
-  font-size:24px;
-  font-weight:900;
-  white-space:nowrap;
-}
+.logo{font-size:23px;font-weight:900;white-space:nowrap}
+.logo b{color:#e50914}
 
-.brand span{
-  color:#e50914;
-}
-
-.nav-title{
-  color:#aaa;
-  font-size:14px;
-}
-
-.search{
-  margin-right:auto;
-  width:min(320px,40vw);
-}
-
+.search{margin-right:auto;width:min(330px,42vw)}
 .search input{
-  width:100%;
-  padding:11px 15px;
-  border-radius:25px;
-  border:1px solid #30333c;
-  background:#171920;
-  color:#fff;
-  outline:none;
+width:100%;padding:11px 15px;border-radius:25px;
+border:1px solid #303642;background:#171a21;color:white;outline:0
 }
-
-/* HERO PLAYER */
 
 .hero{
-  width:100%;
-  background:#000;
+max-width:1450px;margin:auto;
+background:#000
 }
 
-.player-wrap{
-  max-width:1400px;
-  margin:auto;
-  position:relative;
-  aspect-ratio:16/9;
-  max-height:70vh;
-  overflow:hidden;
-  background:#000;
+.player{
+width:100%;aspect-ratio:16/9;max-height:70vh;
+background:#000;position:relative
 }
 
-video{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  background:#000;
-}
+video{width:100%;height:100%;object-fit:contain;background:#000}
 
-.player-info{
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  padding:50px 25px 20px;
-  background:linear-gradient(
-    transparent,
-    rgba(0,0,0,.9)
-  );
-  pointer-events:none;
+.playerTitle{
+position:absolute;bottom:0;right:0;left:0;
+padding:55px 22px 18px;
+background:linear-gradient(transparent,#000d);
+pointer-events:none
 }
 
 .live{
-  display:inline-block;
-  background:#e50914;
-  padding:5px 9px;
-  border-radius:5px;
-  font-size:12px;
-  font-weight:bold;
+display:inline-block;background:#e50914;
+padding:5px 9px;border-radius:5px;font-size:11px;font-weight:bold
 }
 
-.channel-title{
-  font-size:25px;
-  font-weight:bold;
-  margin-top:8px;
+.now{font-size:22px;font-weight:bold;margin-top:8px}
+
+.main{max-width:1450px;margin:auto;padding:20px 16px 60px}
+
+.heading{
+display:flex;justify-content:space-between;align-items:center;
+margin:22px 0 12px
 }
 
-.player-buttons{
-  position:absolute;
-  left:20px;
-  bottom:20px;
-  display:flex;
-  gap:8px;
+.heading h2{font-size:20px;margin:0}
+.count{color:#777;font-size:12px}
+
+.categories,.countries{
+display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;
+scrollbar-width:none
 }
 
-.player-btn{
-  border:0;
-  background:#ffffff18;
-  color:white;
-  border:1px solid #ffffff30;
-  border-radius:8px;
-  padding:9px 14px;
-  cursor:pointer;
+.categories::-webkit-scrollbar,
+.countries::-webkit-scrollbar{display:none}
+
+.filter{
+flex:0 0 auto;border:1px solid #303642;
+background:#171a21;color:#ddd;
+padding:10px 15px;border-radius:22px;cursor:pointer
 }
 
-/* CONTENT */
+.filter.active{background:#e50914;border-color:#e50914}
 
-.content{
-  max-width:1400px;
-  margin:auto;
-  padding:25px 20px 60px;
-}
-
-.section{
-  margin-top:28px;
-}
-
-.section-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:13px;
-}
-
-.section-title{
-  font-size:21px;
-  font-weight:bold;
-}
-
-.section-count{
-  color:#777;
-  font-size:13px;
-}
-
-/* COUNTRY */
-
-.country-row{
-  display:flex;
-  gap:9px;
-  overflow-x:auto;
-  padding-bottom:8px;
-  scrollbar-width:none;
-}
-
-.country-row::-webkit-scrollbar{
-  display:none;
-}
-
-.country-btn{
-  flex:0 0 auto;
-  border:1px solid #30343d;
-  background:#171920;
-  color:#ddd;
-  padding:10px 15px;
-  border-radius:22px;
-  cursor:pointer;
-}
-
-.country-btn.active{
-  background:#e50914;
-  border-color:#e50914;
-  color:#fff;
-}
-
-/* CHANNEL GRID */
-
-.channel-grid{
-  display:grid;
-  grid-template-columns:
-    repeat(auto-fill,minmax(180px,1fr));
-  gap:14px;
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+gap:13px
 }
 
 .card{
-  background:#14161d;
-  border:1px solid #252934;
-  border-radius:10px;
-  overflow:hidden;
-  cursor:pointer;
-  transition:.2s;
+background:#14171e;border:1px solid #252a34;
+border-radius:10px;overflow:hidden;cursor:pointer;
+transition:.18s
 }
 
-.card:hover{
-  transform:scale(1.025);
-  border-color:#444955;
+.card:hover{transform:translateY(-2px);border-color:#555}
+
+.logoBox{
+height:105px;background:#0c0e13;
+display:flex;align-items:center;justify-content:center;padding:14px
 }
 
-.card-logo{
-  height:110px;
-  background:#0d0f14;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:15px;
+.logoBox img{width:100%;height:100%;object-fit:contain}
+.noLogo{font-size:38px}
+
+.body{padding:10px}
+
+.name{
+font-weight:bold;font-size:14px;
+white-space:nowrap;overflow:hidden;text-overflow:ellipsis
 }
 
-.card-logo img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-}
-
-.fallback{
-  font-size:38px;
-}
-
-.card-body{
-  padding:11px;
-}
-
-.card-name{
-  font-size:15px;
-  font-weight:bold;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.card-country{
-  color:#777f8d;
-  font-size:12px;
-  margin-top:5px;
-}
+.meta{font-size:11px;color:#777;margin-top:5px}
 
 .watch{
-  margin-top:9px;
-  width:100%;
-  border:0;
-  border-radius:7px;
-  padding:9px;
-  background:#262a33;
-  color:#fff;
-  cursor:pointer;
+width:100%;border:0;border-radius:7px;
+padding:9px;margin-top:9px;
+background:#252a33;color:#fff;cursor:pointer
 }
 
-.watch:hover{
-  background:#e50914;
+.watch:hover{background:#e50914}
+
+.more{
+display:block;margin:25px auto 0;
+padding:12px 30px;border:1px solid #343a46;
+border-radius:24px;background:#181b22;color:white;
+cursor:pointer;font-weight:bold
 }
 
-/* LOADING */
+.status{text-align:center;color:#8b929e;padding:30px}
 
-.loading{
-  text-align:center;
-  padding:50px;
-  color:#8b919d;
-}
+.empty{text-align:center;color:#777;padding:40px}
 
-.error{
-  text-align:center;
-  padding:40px;
-  color:#ff7777;
-}
-
-/* FOOTER */
-
-footer{
-  text-align:center;
-  padding:30px;
-  color:#555c68;
-  font-size:12px;
-}
-
-/* LANDSCAPE */
-
-@media (orientation:landscape) and (max-height:600px){
-
-  .nav{
-    height:52px;
-  }
-
-  .player-wrap{
-    max-height:calc(100vh - 52px);
-    aspect-ratio:auto;
-    height:calc(100vh - 52px);
-  }
-
-  .content{
-    padding-top:18px;
-  }
-
-  .channel-grid{
-    grid-template-columns:
-      repeat(auto-fill,minmax(160px,1fr));
-  }
-}
-
-/* MOBILE */
+footer{text-align:center;color:#555;padding:30px;font-size:12px}
 
 @media(max-width:650px){
+.nav{min-height:57px;padding:8px 10px}
+.logo{font-size:19px}
+.search{width:150px}
+.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.logoBox{height:88px}
+.main{padding:14px 10px 40px}
+.now{font-size:17px}
+}
 
-  .nav{
-    height:58px;
-    padding:0 12px;
-    gap:10px;
-  }
-
-  .brand{
-    font-size:20px;
-  }
-
-  .nav-title{
-    display:none;
-  }
-
-  .search{
-    width:auto;
-    max-width:180px;
-  }
-
-  .search input{
-    padding:9px 12px;
-  }
-
-  .player-info{
-    padding:35px 14px 12px;
-  }
-
-  .channel-title{
-    font-size:18px;
-  }
-
-  .player-buttons{
-    left:10px;
-    bottom:10px;
-  }
-
-  .content{
-    padding:18px 12px 40px;
-  }
-
-  .channel-grid{
-    grid-template-columns:
-      repeat(2,minmax(0,1fr));
-    gap:9px;
-  }
-
-  .card-logo{
-    height:90px;
-  }
-
-  .card-body{
-    padding:9px;
-  }
+@media(orientation:landscape) and (max-height:600px){
+.player{height:calc(100vh - 57px);max-height:none;aspect-ratio:auto}
 }
 </style>
 </head>
@@ -389,624 +154,607 @@ footer{
 <body>
 
 <header>
-  <div class="nav">
+<div class="nav">
 
-    <div class="brand">
-      <span>HAMOUDA</span> TV 📺
-    </div>
+<div class="logo">
+<b>HAMOUDA</b> TV PRO 📺
+</div>
 
-    <div class="nav-title">
-      عالم القنوات بين يديك
-    </div>
+<div class="search">
+<input id="search" type="search" placeholder="🔎 ابحث عن قناة">
+</div>
 
-    <div class="search">
-      <input
-        id="search"
-        type="search"
-        placeholder="🔎 ابحث عن قناة..."
-      >
-    </div>
-
-  </div>
+</div>
 </header>
 
-
 <section class="hero">
+<div class="player">
 
-  <div class="player-wrap">
+<video id="video" controls autoplay muted playsinline></video>
 
-    <video
-      id="player"
-      autoplay
-      muted
-      playsinline
-      controls
-    ></video>
+<div class="playerTitle">
+<div class="live">● مباشر</div>
+<div class="now" id="now">اختر قناة للمشاهدة</div>
+</div>
 
-    <div class="player-info">
-
-      <div class="live">
-        ● LIVE
-      </div>
-
-      <div
-        class="channel-title"
-        id="nowPlaying"
-      >
-        جاري اختيار قناة...
-      </div>
-
-    </div>
-
-    <div class="player-buttons">
-
-      <button
-        class="player-btn"
-        onclick="toggleSound()"
-      >
-        🔊 الصوت
-      </button>
-
-    </div>
-
-  </div>
-
+</div>
 </section>
 
+<main class="main">
 
-<main class="content">
+<div class="heading">
+<h2>🌍 التصنيفات</h2>
+</div>
 
-  <div
-    id="status"
-    class="loading"
-  >
-    ⏳ جاري تحميل القنوات...
-  </div>
+<div id="categories" class="categories"></div>
 
+<div class="heading">
+<h2>🌐 الدول</h2>
+<div id="count" class="count"></div>
+</div>
 
-  <section class="section">
+<div id="countries" class="countries"></div>
 
-    <div class="section-head">
-      <div class="section-title">
-        🌍 الدول
-      </div>
-    </div>
+<div id="status" class="status">
+⏳ جاري تجهيز القنوات...
+</div>
 
-    <div
-      id="countries"
-      class="country-row"
-    ></div>
+<div id="grid" class="grid"></div>
 
-  </section>
-
-
-  <section class="section">
-
-    <div class="section-head">
-
-      <div class="section-title">
-        📺 القنوات
-      </div>
-
-      <div
-        id="count"
-        class="section-count"
-      ></div>
-
-    </div>
-
-    <div
-      id="channels"
-      class="channel-grid"
-    ></div>
-
-  </section>
+<button id="more" class="more" style="display:none">
+عرض 50 قناة أخرى
+</button>
 
 </main>
 
-
 <footer>
-  HAMOUDA TV 📺
-  <br>
-  World Television
+HAMOUDA TV PRO 📺<br>
+World Television
 </footer>
-
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <script>
 
-const CHANNELS_URL =
+const API_CHANNELS =
 "https://iptv-org.github.io/api/channels.json";
 
-const STREAMS_URL =
+const API_STREAMS =
 "https://iptv-org.github.io/api/streams.json";
 
+const BATCH=50;
+
 let channels=[];
-let streams=[];
-let streamMap=new Map();
+let streams=new Map();
 
-let currentCountry="";
-let currentChannels=[];
+let filtered=[];
+let shown=0;
 
-const video=
-document.getElementById("player");
+let selectedCategory="all";
+let selectedCountry="all";
 
-
-async function init(){
-
-  try{
-
-    const responses=await Promise.all([
-
-      fetch(CHANNELS_URL),
-      fetch(STREAMS_URL)
-
-    ]);
-
-    if(
-      !responses[0].ok ||
-      !responses[1].ok
-    ){
-      throw new Error();
-    }
-
-    channels=
-      await responses[0].json();
-
-    streams=
-      await responses[1].json();
+const video=document.getElementById("video");
 
 
-    streams.forEach(stream=>{
+/* أسماء الدول */
 
-      if(
-        stream.channel &&
-        stream.url &&
-        !streamMap.has(stream.channel)
-      ){
-
-        streamMap.set(
-          stream.channel,
-          stream.url
-        );
-
-      }
-
-    });
-
-
-    currentChannels=
-      channels.filter(c=>
-        streamMap.has(c.id)
-      );
-
-
-    createCountries();
-
-    showChannels();
-
-    /*
-      تشغيل أول قناة تلقائياً
-    */
-
-    if(currentChannels.length){
-
-      playChannel(
-        currentChannels[0]
-      );
-
-    }
-
-
-    document.getElementById(
-      "status"
-    ).style.display="none";
+const countryNames={
+DZ:"🇩🇿 الجزائر",
+EG:"🇪🇬 مصر",
+MA:"🇲🇦 المغرب",
+TN:"🇹🇳 تونس",
+SA:"🇸🇦 السعودية",
+AE:"🇦🇪 الإمارات",
+QA:"🇶🇦 قطر",
+KW:"🇰🇼 الكويت",
+JO:"🇯🇴 الأردن",
+LB:"🇱🇧 لبنان",
+IQ:"🇮🇶 العراق",
+SY:"🇸🇾 سوريا",
+PS:"🇵🇸 فلسطين",
+FR:"🇫🇷 فرنسا",
+GB:"🇬🇧 بريطانيا",
+DE:"🇩🇪 ألمانيا",
+IT:"🇮🇹 إيطاليا",
+ES:"🇪🇸 إسبانيا",
+PT:"🇵🇹 البرتغال",
+NL:"🇳🇱 هولندا",
+BE:"🇧🇪 بلجيكا",
+CH:"🇨🇭 سويسرا",
+AT:"🇦🇹 النمسا",
+US:"🇺🇸 الولايات المتحدة",
+CA:"🇨🇦 كندا",
+MX:"🇲🇽 المكسيك",
+BR:"🇧🇷 البرازيل",
+AR:"🇦🇷 الأرجنتين",
+TR:"🇹🇷 تركيا",
+IN:"🇮🇳 الهند",
+JP:"🇯🇵 اليابان",
+KR:"🇰🇷 كوريا الجنوبية",
+CN:"🇨🇳 الصين",
+AU:"🇦🇺 أستراليا",
+ZA:"🇿🇦 جنوب أفريقيا",
+NG:"🇳🇬 نيجيريا",
+RU:"🇷🇺 روسيا"
+};
 
 
-  }catch(error){
+/* تصنيفات عامة */
 
-    console.error(error);
+const europe=[
+"FR","GB","DE","IT","ES","PT","NL","BE",
+"CH","AT","TR","RU"
+];
 
-    document.getElementById(
-      "status"
-    ).innerHTML=
-      "❌ تعذر تحميل القنوات.<br>تحقق من الإنترنت.";
+const arab=[
+"DZ","EG","MA","TN","SA","AE","QA","KW",
+"JO","LB","IQ","SY","PS"
+];
 
-  }
+const america=[
+"US","CA","MX","BR","AR"
+];
+
+const asia=[
+"IN","JP","KR","CN","AU"
+];
+
+
+async function load(){
+
+try{
+
+const [a,b]=await Promise.all([
+fetch(API_CHANNELS),
+fetch(API_STREAMS)
+]);
+
+const channelData=await a.json();
+const streamData=await b.json();
+
+
+streamData.forEach(s=>{
+
+if(s.channel && s.url && !streams.has(s.channel)){
+streams.set(s.channel,s.url);
+}
+
+});
+
+
+channels=channelData.filter(c=>
+streams.has(c.id)
+);
+
+
+/*
+نخلي القنوات اللي عندها بث فعلي فقط
+*/
+
+buildCategories();
+buildCountries();
+
+applyFilters();
+
+document.getElementById("status").style.display="none";
+
+
+}catch(e){
+
+console.error(e);
+
+document.getElementById("status").innerHTML=
+"❌ تعذر تحميل القنوات.<br>تحقق من الإنترنت وأعد المحاولة.";
+
+}
 
 }
 
 
-function createCountries(){
+/* التصنيفات */
 
-  const box=
-    document.getElementById(
-      "countries"
-    );
+function buildCategories(){
 
-  box.innerHTML="";
+const box=document.getElementById("categories");
 
+box.innerHTML="";
 
-  const countries=
-    new Set();
+addCategory(box,"all","🌍 العالم");
 
+addCategory(box,"arab","🕌 عربي");
 
-  currentChannels.forEach(channel=>{
+addCategory(box,"europe","🇪🇺 أوروبا");
 
-    if(
-      Array.isArray(channel.countries)
-    ){
+addCategory(box,"america","🌎 أمريكا");
 
-      channel.countries.forEach(
-        country=>{
-          countries.add(country);
-        }
-      );
-
-    }
-
-  });
-
-
-  const all=
-    document.createElement("button");
-
-  all.className=
-    "country-btn active";
-
-  all.textContent=
-    "🌍 الكل";
-
-  all.onclick=()=>{
-
-    currentCountry="";
-
-    document
-      .querySelectorAll(".country-btn")
-      .forEach(b=>
-        b.classList.remove("active")
-      );
-
-    all.classList.add("active");
-
-    showChannels();
-
-  };
-
-  box.appendChild(all);
-
-
-  Array.from(countries)
-    .sort((a,b)=>
-      a.localeCompare(b)
-    )
-    .forEach(country=>{
-
-      const button=
-        document.createElement("button");
-
-      button.className=
-        "country-btn";
-
-      button.textContent=
-        "🌐 " + country;
-
-      button.onclick=()=>{
-
-        currentCountry=
-          country;
-
-        document
-          .querySelectorAll(
-            ".country-btn"
-          )
-          .forEach(b=>
-            b.classList.remove(
-              "active"
-            )
-          );
-
-        button.classList.add(
-          "active"
-        );
-
-        showChannels();
-
-      };
-
-      box.appendChild(button);
-
-    });
+addCategory(box,"asia","🌏 آسيا");
 
 }
 
 
-function showChannels(){
+/* زر تصنيف */
 
-  const search=
-    document
-      .getElementById("search")
-      .value
-      .toLowerCase()
-      .trim();
+function addCategory(box,id,text){
 
+const b=document.createElement("button");
 
-  let list=
-    currentChannels.filter(channel=>{
+b.className="filter";
 
-      const name=
-        (channel.name || "")
-        .toLowerCase();
+if(id==="all")b.classList.add("active");
 
+b.textContent=text;
 
-      const countryOK=
-        !currentCountry ||
-        (
-          Array.isArray(
-            channel.countries
-          ) &&
-          channel.countries.includes(
-            currentCountry
-          )
-        );
+b.onclick=()=>{
 
+document.querySelectorAll("#categories .filter")
+.forEach(x=>x.classList.remove("active"));
 
-      const searchOK=
-        !search ||
-        name.includes(search);
+b.classList.add("active");
 
+selectedCategory=id;
 
-      return countryOK &&
-             searchOK;
+selectedCountry="all";
 
-    });
+document.querySelectorAll("#countries .filter")
+.forEach(x=>x.classList.remove("active"));
 
+document.querySelector("#countries .filter")
+?.classList.add("active");
 
-  list.sort((a,b)=>
-    (a.name||"")
-    .localeCompare(
-      b.name||""
-    )
-  );
+applyFilters();
 
+};
 
-  const box=
-    document.getElementById(
-      "channels"
-    );
-
-  box.innerHTML="";
-
-
-  document.getElementById(
-    "count"
-  ).textContent=
-    list.length +
-    " قناة";
-
-
-  list.forEach(channel=>{
-
-    const card=
-      document.createElement(
-        "div"
-      );
-
-    card.className="card";
-
-
-    const logo=
-      document.createElement(
-        "div"
-      );
-
-    logo.className=
-      "card-logo";
-
-
-    if(channel.logo){
-
-      const img=
-        document.createElement(
-          "img"
-        );
-
-      img.src=channel.logo;
-
-      img.alt=
-        channel.name || "";
-
-      img.loading="lazy";
-
-      img.onerror=()=>{
-
-        img.remove();
-
-        logo.innerHTML=
-          '<div class="fallback">📺</div>';
-
-      };
-
-      logo.appendChild(img);
-
-    }else{
-
-      logo.innerHTML=
-        '<div class="fallback">📺</div>';
-
-    }
-
-
-    card.appendChild(logo);
-
-
-    const body=
-      document.createElement(
-        "div"
-      );
-
-    body.className=
-      "card-body";
-
-
-    const name=
-      document.createElement(
-        "div"
-      );
-
-    name.className=
-      "card-name";
-
-    name.textContent=
-      channel.name ||
-      "قناة";
-
-    body.appendChild(name);
-
-
-    const country=
-      document.createElement(
-        "div"
-      );
-
-    country.className=
-      "card-country";
-
-    country.textContent=
-      (
-        channel.countries &&
-        channel.countries[0]
-      ) ||
-      "International";
-
-    body.appendChild(country);
-
-
-    const button=
-      document.createElement(
-        "button"
-      );
-
-    button.className="watch";
-
-    button.textContent=
-      "▶ مشاهدة الآن";
-
-    button.onclick=()=>{
-
-      playChannel(channel);
-
-      window.scrollTo({
-        top:0,
-        behavior:"smooth"
-      });
-
-    };
-
-
-    body.appendChild(button);
-
-    card.appendChild(body);
-
-    box.appendChild(card);
-
-  });
-
+box.appendChild(b);
 
 }
 
 
-function playChannel(channel){
+/* الدول */
 
-  const url=
-    streamMap.get(channel.id);
+function buildCountries(){
 
-  if(!url){
-    return;
-  }
+const box=document.getElementById("countries");
 
+box.innerHTML="";
 
-  document.getElementById(
-    "nowPlaying"
-  ).textContent=
-    channel.name ||
-    "Live TV";
+const all=document.createElement("button");
 
+all.className="filter active";
 
-  /*
-    HLS
-  */
+all.textContent="🌍 الكل";
 
-  if(
-    window.Hls &&
-    Hls.isSupported() &&
-    (
-      url.includes(".m3u8") ||
-      url.includes("m3u8")
-    )
-  ){
+all.onclick=()=>{
 
-    if(window.currentHls){
-      window.currentHls.destroy();
-    }
+selectedCountry="all";
+
+document.querySelectorAll("#countries .filter")
+.forEach(x=>x.classList.remove("active"));
+
+all.classList.add("active");
+
+applyFilters();
+
+};
+
+box.appendChild(all);
 
 
-    const hls=
-      new Hls();
+const set=new Set();
 
-    window.currentHls=
-      hls;
+channels.forEach(c=>{
 
+if(Array.isArray(c.countries)){
 
-    hls.loadSource(url);
+c.countries.forEach(x=>set.add(x));
 
-    hls.attachMedia(video);
+}
 
-    hls.on(
-      Hls.Events.MANIFEST_PARSED,
-      ()=>{
-        video.play().catch(()=>{});
-      }
-    );
+});
 
 
-  }else{
+Array.from(set)
+.sort()
+.forEach(code=>{
 
-    video.src=url;
+const b=document.createElement("button");
 
-    video.play().catch(()=>{});
+b.className="filter";
 
-  }
+b.textContent=
+countryNames[code] || ("🌐 "+code);
+
+b.onclick=()=>{
+
+selectedCountry=code;
+
+document.querySelectorAll("#countries .filter")
+.forEach(x=>x.classList.remove("active"));
+
+b.classList.add("active");
+
+applyFilters();
+
+};
+
+box.appendChild(b);
+
+});
 
 }
 
 
-function toggleSound(){
+/* التصفية */
 
-  video.muted=
-    !video.muted;
+function applyFilters(){
 
-  if(!video.muted){
+const search=
+document.getElementById("search")
+.value.toLowerCase().trim();
 
-    video.volume=1;
 
-  }
+filtered=channels.filter(c=>{
+
+const name=(c.name||"").toLowerCase();
+
+if(search && !name.includes(search))
+return false;
+
+
+if(selectedCountry!=="all"){
+
+if(
+!Array.isArray(c.countries) ||
+!c.countries.includes(selectedCountry)
+)return false;
 
 }
 
 
-document
-  .getElementById("search")
-  .addEventListener(
-    "input",
-    showChannels
-  );
+if(selectedCategory!=="all"){
+
+const countries=c.countries||[];
+
+if(selectedCategory==="arab" &&
+!countries.some(x=>arab.includes(x)))
+return false;
+
+if(selectedCategory==="europe" &&
+!countries.some(x=>europe.includes(x)))
+return false;
+
+if(selectedCategory==="america" &&
+!countries.some(x=>america.includes(x)))
+return false;
+
+if(selectedCategory==="asia" &&
+!countries.some(x=>asia.includes(x)))
+return false;
+
+}
 
 
-init();
+return true;
+
+});
+
+
+filtered.sort((a,b)=>
+(a.name||"").localeCompare(b.name||"")
+);
+
+
+shown=0;
+
+document.getElementById("grid").innerHTML="";
+
+renderNext();
+
+}
+
+
+/* تحميل 50 فقط */
+
+function renderNext(){
+
+const grid=document.getElementById("grid");
+
+const next=
+Math.min(
+shown+BATCH,
+filtered.length
+);
+
+
+for(let i=shown;i<next;i++){
+
+createCard(filtered[i],grid);
+
+}
+
+
+shown=next;
+
+
+document.getElementById("count").textContent=
+filtered.length+" قناة";
+
+
+const more=document.getElementById("more");
+
+more.style.display=
+shown<filtered.length
+?"block":"none";
+
+}
+
+
+/* بطاقة */
+
+function createCard(c,grid){
+
+const card=document.createElement("div");
+
+card.className="card";
+
+
+const logo=document.createElement("div");
+
+logo.className="logoBox";
+
+
+if(c.logo){
+
+const img=document.createElement("img");
+
+img.src=c.logo;
+
+img.loading="lazy";
+
+img.alt=c.name||"";
+
+img.onerror=()=>{
+img.remove();
+logo.innerHTML='<div class="noLogo">📺</div>';
+};
+
+logo.appendChild(img);
+
+}else{
+
+logo.innerHTML='<div class="noLogo">📺</div>';
+
+}
+
+card.appendChild(logo);
+
+
+const body=document.createElement("div");
+
+body.className="body";
+
+
+const name=document.createElement("div");
+
+name.className="name";
+
+name.textContent=c.name||"Channel";
+
+body.appendChild(name);
+
+
+const code=
+(c.countries&&c.countries[0])||"";
+
+const meta=document.createElement("div");
+
+meta.className="meta";
+
+meta.textContent=
+countryNames[code]||"🌍 دولية";
+
+body.appendChild(meta);
+
+
+const btn=document.createElement("button");
+
+btn.className="watch";
+
+btn.textContent="▶ مشاهدة";
+
+btn.onclick=()=>play(c);
+
+body.appendChild(btn);
+
+card.appendChild(body);
+
+grid.appendChild(card);
+
+}
+
+
+/* التشغيل */
+
+function play(channel){
+
+const url=streams.get(channel.id);
+
+if(!url)return;
+
+
+document.getElementById("now").textContent=
+channel.name||"Live";
+
+
+if(window.hlsPlayer){
+
+window.hlsPlayer.destroy();
+
+window.hlsPlayer=null;
+
+}
+
+
+if(
+window.Hls &&
+Hls.isSupported() &&
+/m3u8/i.test(url)
+){
+
+const hls=new Hls({
+enableWorker:true,
+lowLatencyMode:false,
+maxBufferLength:20,
+maxMaxBufferLength:30
+});
+
+window.hlsPlayer=hls;
+
+hls.loadSource(url);
+
+hls.attachMedia(video);
+
+hls.on(
+Hls.Events.MANIFEST_PARSED,
+()=>{
+video.play().catch(()=>{});
+}
+);
+
+}else{
+
+video.src=url;
+
+video.play().catch(()=>{});
+
+}
+
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+/* المزيد */
+
+document.getElementById("more")
+.onclick=renderNext;
+
+
+/* البحث */
+
+document.getElementById("search")
+.oninput=applyFilters;
+
+
+/* تشغيل */
+
+load();
 
 </script>
 
 </body>
-    </html>
+  </html>
